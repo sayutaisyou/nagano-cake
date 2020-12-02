@@ -2,13 +2,10 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :order_details, only:[:update]
-  end
-  namespace :admins do
     resources :orders, only:[:index, :show, :update]
-  end
-  namespace :admins do
     resources :customers, only:[:index, :show, :edit, :update]
   end
+  
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
