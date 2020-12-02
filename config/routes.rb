@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  namespace :admins do
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
+  end
+  
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
