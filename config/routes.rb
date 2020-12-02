@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-
-
+  
   namespace :admins do
     resources :order_details, only:[:update]
     resources :orders, only:[:index, :show, :update]
     resources :customers, only:[:index, :show, :edit, :update]
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
   end
   
   namespace :customers do
