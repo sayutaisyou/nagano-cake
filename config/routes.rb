@@ -15,6 +15,31 @@ Rails.application.routes.draw do
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
   end
 
+
+
+  namespace :customers do
+    resources :items, only:[:index, :show]
+
+    resources :customers, only:[:edit, :update]
+    get 'customers/my_page/:id' => 'customers#show', as: 'my_page'
+    get 'customers/unsubscribe'
+    patch 'customers/withdraw'
+
+    resources :cart_items, only:[:index, :update, :destroy, :create]
+    delete 'cart_items/destroy_all'
+
+  end
+
+
+  namespace :admins do
+    get 'homes/top'
+  end
+
+  namespace :customers do
+    get 'homes/top'
+    get 'homes/about'
+  end
+
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
