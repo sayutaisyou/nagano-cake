@@ -1,2 +1,44 @@
-<h1>Customers::Orders#confirm</h1>
-<p>Find me in app/views/customers/orders/confirm.html.erb</p>
+<h1>注文情報確認</h1>
+<table>
+    <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @order_details.each do |order_detail| %>
+            <tr>
+                <td>
+                    <%= attachment_image_tag(order_detail.item, :item_image, :fill, 80, 50) %>
+                    <%= order_detail.name %>
+                </td>
+                <td><%= order_detail.price %></td>
+                <td><%= order_detail.amount %></td>
+                <td><%= order_detail.price * order_detail.amount %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+<table>
+    <tbody>
+        <tr>
+            <td>送料</td>
+            <td><%= shipping_cost %></td>
+            <td>商品合計</td>
+            <td><%= total_payment - shipping_cost %></td>
+            <td>請求金額</td>
+            <td><%= total_payment %></td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <b>支払方法</b>
+    <%= @this_payment %>
+    <b>お届け先</b>
+    <%= @this_postal_code %>
+    <%= @this_address %>
+    <%= @this_name %>
+</div>
