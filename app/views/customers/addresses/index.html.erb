@@ -1,2 +1,41 @@
-<h1>Customers::Addresses#index</h1>
-<p>Find me in app/views/customers/addresses/index.html.erb</p>
+<h1>配送先登録 / 一覧</h1>
+
+<div>
+    <%= form_with model: @address, url: customers_addresses_path, local: true do |f| %>
+        <p>郵便番号（ハイフンなし）</p>
+        <%= f.text_field :postal_code %>
+        <p>住所</p>
+        <%= f.text_field :address %>
+        <p>宛名</p>
+        <%= f.text_field :name %>
+        <%= f.submit "登録する", class: "btn-sm btn-success" %>
+    <% end %>
+</div>
+
+<table>
+    <thead>
+        <tr>
+          <th>郵便番号</th>
+          <th>住所</th>
+          <th>宛名</th>
+          <th colspan="1"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @addresses.each do |address| %>
+            <tr>
+                <td><%= address.postal_code %></td>
+                <td><%= address.address %></td>
+                <td><%= address.name %></td>
+                <td>
+                    <%= link_to edit_customers_address_path(address.customer) do %>
+					    <button type="button" class="btn btn-primary">編集する</button>
+					<% end %>
+					<%= link_to customers_address_path(address.customer), method: :delete do %>
+					    <button type="button" class="btn btn-primary", data: {confirm: "本当に削除しますか？"}>削除する</button>
+					<% end %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
