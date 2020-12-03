@@ -1,7 +1,10 @@
 class Customers::AddressesController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @address = Address.new
-    @addresses = Address.all
+    @address.customer_id = current_user.id
+    @addresses = current_user.Address.all
   end
 
   def edit
