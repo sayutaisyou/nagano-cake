@@ -1,2 +1,22 @@
-<h1>Customers::Items#show</h1>
-<p>Find me in app/views/customers/items/show.html.erb</p>
+<h1>会員側/商品詳細ページ</h1>
+<p>Customers::Items#show</p>
+
+<!--部分テンプレート化-->
+<h3>ジャンル検索</h3>
+<%= @genres.each do |genre| %>
+  <%= link_to genre.name, "#" %>
+<% end %>
+
+<div>
+  <%= attachment_image_tag @item, :item_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x300" %>
+  <%= @item.name %>
+　<%= @item.price %>
+　<%= "¥#{@item.price}" %><p>(税込)</p>
+</div>
+
+<%= form_with model: @item, url: _path, local: true do |f| %>
+  <div>
+    <!--個数選択のドロップダウンメニュー-->
+  </div>
+  <%= f.submit "カートに入れる" %>
+<% end %>
