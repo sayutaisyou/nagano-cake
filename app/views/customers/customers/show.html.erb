@@ -1,11 +1,12 @@
 <p>Customers::Customers#show</p>
 
 <h3>マイページ</h3>
+<%= flash[:notice] %>
 
 <label><b>登録情報</b></label>
-  <%= link_to "編集する",edit_customers_customer_path %>
-  <!--遷移が変/ログインの判定のせいかも-->
-  <%= link_to "パスワードを変更する",new_customer_password_path %>
+<%= link_to "編集する",edit_customers_customer_path %>
+<!--遷移が変/ログインの判定のせいかも-->
+<%= link_to "パスワードを変更する",new_customer_password_path %>
 
   <table>
     <tr>
@@ -43,4 +44,5 @@
   <label><b>注文履歴</b></label>
   <%= link_to "一覧を見る",customers_orders_path %>
 </div>
+
 
