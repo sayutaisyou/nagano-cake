@@ -1,2 +1,13 @@
-<h1>Customers::Addresses#edit</h1>
-<p>Find me in app/views/customers/addresses/edit.html.erb</p>
+<h1>配送先編集</h1>
+
+<div>
+    <%= form_with model: @address, url: edit_customers_address_path, local: true do |f| %>
+        <p>郵便番号（ハイフンなし）</p>
+        <%= f.text_field :postal_code %>
+        <p>住所</p>
+        <%= f.text_field :address %>
+        <p>宛名</p>
+        <%= f.text_field :name %>
+        <%= f.submit "編集する", class: "btn-sm btn-primary" %>
+    <% end %>
+</div>
