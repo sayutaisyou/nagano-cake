@@ -1,10 +1,9 @@
-<h2>会員側/トップページ</h2>
-<p>Customers::Homes#top</p>
+ <p>Customers::Homes#top</p>
 
 <div>
   <!--部分テンプレート化-->
   <h3>ジャンル検索</h3>
-  <%= @genres.each do |genre| %>
+  <% @genres.each do |genre| %>
     <%= link_to genre.name, "#" %>
   <% end %>
 </div>
@@ -19,11 +18,11 @@
 
 <h2>オススメ商品</h2>
 <div>
-　<%= @items.each do |item| %>
-　  <%= attachment_image_tag item, :item_image, format: 'jpeg', fallback: "no_image.jpg", size: "100x200" %>
-　  <%= item.name %>
-　  <%= item.price %>
-　<% end %>
+ <% @items.each do |item| %>
+   <!--< %= attachment_image_tag item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "100x200" %>-->
+   <%= item.name %>
+   <%= item.price %>
+ <% end %>
 </div>
 
 <%= link_to "もっと見る", "#" %>
