@@ -1,2 +1,74 @@
-<h1>Customers::CartItems#index</h1>
-<p>Find me in app/views/customers/cart_items/index.html.erb</p>
+<h1>ショッピングカート</h1>
+<%= link_to customers_cart_items_destroy_all_path, method: :delete do %>
+    <button type="button" class="btn btn-danger", data: {confirm: "本当に全て削除しますか？">カートを空にする</button>
+<% end %>
+
+<!--row切り替え-->
+<!--カートに商品がある時の表示画面-->
+<% if @cart_items.count > 0 %>
+    <table>
+        <thead>
+            <tr>
+                <th>商品名</th>
+                <th>単価（税込）</th>
+                <th>数量</th>
+                <th>小計</th>
+                <th colspan="1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @sum = 0 %>
+            <% @cart_items.each do |cart_item| %>
+                <tr>
+                    <td>
+                        <%= attachment_image_tag(cart_item.item, :item_image, :fill, 80, 50, fallback: "no-image-mini.jpg") %>
+                        <%= cart_item.items.name %>
+                    </td>
+                    <td><%= cart_item.items.price %></td>
+                    <td>
+                        <%= amount %>
+                        <%= link_to customers_cart_item_path(cart_item.id) do %>
+					        <button type="button" class="btn btn-primary">変更</button>
+					    <% end %>
+                    </td>
+                    <td>
+                        <% @each_sum = cart_item.price * amount %>
+                        <%= cart_item.price * amount %>
+                        <% @sum += @each_sum %>
+                    </td>
+                    <td>
+                        <%= link_to customers_cart_item_path(cart_item.id), method: :delete do %>
+					        <button type="button" class="btn btn-danger", data: {confirm: "本当に削除しますか？"}>削除する</button>
+					    <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+<!--row切り替え-->
+    <%= link_to customers_items_path do %>
+	    <button type="button" class="btn btn-primary">買い物を続ける</button>
+    <% end %>
+
+    <table>
+        <tr>
+            <td>合計金額</td>
+            <td><%= @sum %></td>
+        </tr>
+    </table>
+
+    <%= link_to new_customers_order_path do %>
+	    <button type="button" class="btn btn-success btn-lg">情報入力に進む</button>
+    <% end %>
+    
+<!--カートが空の時の表示画面-->
+<% else %>
+    <p>カートに商品がありません</p>
+    <%= link_to customers_items_path do %>
+	    <button type="button" class="btn btn-primary">買い物を続ける</button>
+    <% end %>
+    <%= link_to new_customers_order_path do %>
+	    <button type="button" class="btn btn-success btn-lg disabled">情報入力に進む</button>
+    <% end %>
+<% end %>

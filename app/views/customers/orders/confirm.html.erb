@@ -12,7 +12,7 @@
         <% @order_details.each do |order_detail| %>
             <tr>
                 <td>
-                    <%= attachment_image_tag(order_detail.item, :item_image, :fill, 80, 50) %>
+                    <%= attachment_image_tag(order_detail.item, :item_image, :fill, 80, 50, fallback: "no-image-mini.jpg") %>
                     <%= order_detail.name %>
                 </td>
                 <td><%= order_detail.price %></td>
