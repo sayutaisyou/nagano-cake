@@ -1,7 +1,7 @@
 <h1>配送先編集</h1>
 
 <div>
-    <%= form_with model: @address, url: edit_customers_address_path, local: true do |f| %>
+    <%= form_with model: @address, url: customers_address_path, local: true do |f| %>
         <p>郵便番号（ハイフンなし）</p>
         <%= f.text_field :postal_code %>
         <p>住所</p>

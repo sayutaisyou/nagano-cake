@@ -1,10 +1,10 @@
 class Customers::AddressesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_customer!
   
   def index
     @address = Address.new
-    @address.customer_id = current_user.id
-    @addresses = current_user.Address.all
+    @address.customer_id = current_customer.id
+    @addresses = current_customer.addresses.all
   end
 
   def edit
@@ -12,6 +12,8 @@ class Customers::AddressesController < ApplicationController
   end
   
   def create
+    @address = current_customer.addresses.new(address_params)
+    @addresses = current_customer.addresses.all
     if @address.save
       redirect_to customers_addresses_path, notice: "You have created address successfully."
     else
@@ -29,6 +31,7 @@ class Customers::AddressesController < ApplicationController
   end
   
   def destroy
+    @address = Address.find(params[:id])
     @address.destroy
     redirect_to customers_addresses_path
   end
@@ -36,6 +39,6 @@ class Customers::AddressesController < ApplicationController
   
   protected
   def address_params
-    params.require(:address).permit(:posta_code, :address, :name)
+    params.require(:address).permit(:postal_code, :address, :name)
   end
 end
