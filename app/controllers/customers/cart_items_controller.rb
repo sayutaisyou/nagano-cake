@@ -7,7 +7,7 @@ class Customers::CartItemsController < ApplicationController
 
   def update
     @cart_item = CartItem.find(params[:id])
-    if @cart_item.save
+    if @cart_item.update(cart_item_params)
       redirect_to customers_cart_items_path, notice: "You have modified amount successfully."
     else
       render :index
@@ -16,6 +16,8 @@ class Customers::CartItemsController < ApplicationController
 
   def destroy
     @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
+    redirect_to customers_cart_items_path
   end
 
   def destroy_all
@@ -39,6 +41,6 @@ class Customers::CartItemsController < ApplicationController
   
   protected
   def cart_item_params
-    params.(:cart_item).require.(:amount)
+    params.require(:cart_item).permit(:amount)
   end
 end

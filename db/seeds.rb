@@ -14,7 +14,7 @@ Genre.create!(
     Item.create!(
       genre_id: 1,
       name: "ケーキ#{n + 1}",
-      image_id: File.open('./app/assets/images/661.png'),
+      image: File.open('./app/assets/images/661.png'),
       introduction: "説明文その#{n + 1}",
       price: 2000 + n
     )
@@ -49,9 +49,3 @@ CartItem.create!(
    customer_id: 3,
    amount: 3
 )
-
-# fruits = ["apple", "orange", "melon", "banana", "pineapple"]
- 
-# p fruits.sample(2)
-# p fruits.sample(4)
-# p fruits.sample(8)

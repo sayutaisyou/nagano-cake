@@ -21,19 +21,20 @@
             <% @cart_items.each do |cart_item| %>
                 <tr>
                     <td>
-                        <%= attachment_image_tag(cart_item.item, :item_image, :fill, 80, 50, fallback: "no-image-mini.jpg") %>
-                        <%= cart_item.items.name %>
+                        <%= attachment_image_tag(cart_item.item, :image, :fill, 80, 50, fallback: "no-image-mini.jpg") %>
+                        <%= cart_item.item.name %>
                     </td>
-                    <td><%= cart_item.items.price %></td>
+                    <td><%= cart_item.item.price %></td>
                     <td>
-                        <%= amount %>
-                        <%= link_to customers_cart_item_path(cart_item.id) do %>
-					        <button type="button" class="btn btn-primary">変更</button>
-					    <% end %>
+                        <!--入力フォーム-->
+                        <%= form_with model: cart_item, url: customers_cart_item_path(cart_item.id), local: true do |f| %>
+                            <%= f.number_field :amount %>
+                            <%= f.submit "変更", class: "btn-sm btn-primary" %>
+                        <% end %>
                     </td>
                     <td>
-                        <% @each_sum = cart_item.price * amount %>
-                        <%= cart_item.price * amount %>
+                        <% @each_sum = cart_item.item.price * 1.1 * cart_item.amount %>
+                        <%= cart_item.item.price * cart_item.amount %>
                         <% @sum += @each_sum %>
                     </td>
                     <td>
@@ -54,7 +55,7 @@
     <table>
         <tr>
             <td>合計金額</td>
-            <td><%= @sum %></td>
+            <td><%= @sum.round %></td>
         </tr>
     </table>
 
