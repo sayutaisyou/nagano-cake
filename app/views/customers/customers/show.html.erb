@@ -1,12 +1,16 @@
 <p>Customers::Customers#show</p>
 
 <h3>マイページ</h3>
-<%= flash[:notice] %>
+  <% if flash[:notice] %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
 
 <label><b>登録情報</b></label>
 <%= link_to "編集する",edit_customers_customer_path %>
 <!--遷移が変/ログインの判定のせいかも-->
-<%= link_to "パスワードを変更する",new_customer_password_path %>
+<%= link_to "パスワードを変更する",new_customer_password_path(order_sort: 0) %>
 
   <table>
     <tr>

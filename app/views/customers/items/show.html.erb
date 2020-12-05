@@ -3,20 +3,21 @@
 
 <!--部分テンプレート化-->
 <h3>ジャンル検索</h3>
-<%= @genres.each do |genre| %>
-  <%= link_to genre.name, "#" %>
-<% end %>
+<%= render 'customers/sidebar', genres: @genres %>
 
 <div>
-  <%= attachment_image_tag @item, :item_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x300" %>
-  <%= @item.name %>
-　<%= @item.price %>
-　<%= "¥#{@item.price}" %><p>(税込)</p>
+  <%= attachment_image_tag @item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "300x150" %>
+  <div>
+     <b><%= @item.name %></b><br>
+  　<%= @item.introduction %><br>
+  　<b>¥<%= syouhizei(@item.price)%></b>(税込)
+  </div>
 </div>
 
-<%= form_with model: @item, url: _path, local: true do |f| %>
+<%= form_with model: @cart_item, url: customers_cart_items_path, local: true do |f| %>
   <div>
-    <!--個数選択のドロップダウンメニュー-->
+    <%= f.select :amount, {"1": 1, "2": 2, "3": 3}, include_blank: "個数選択"  %>
   </div>
   <%= f.submit "カートに入れる" %>
 <% end %>
+

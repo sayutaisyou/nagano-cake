@@ -3,20 +3,22 @@
 
 <!--部分テンプレート化-->
 <h3>ジャンル検索</h3>
-<%= @genres.each do |genre| %>
-  <%= link_to genre.name, "#" %>
-<% end %>
+  <%= render 'customers/sidebar', genres: @genres %>
 
-<h2>商品一覧</h2>
-<p>全<%= @items.count %>件</p>
+<h2><%= @genre_name %>一覧</h2>
+<p>全<%= @item_count.count %>件</p>
 
 <!--kaminariの記述-->
 <div>
-　<%= @items_paginate.each do |item| %>
-　  <%= attachment_image_tag item, :item_image, format: 'jpeg', fallback: "no_image.jpg", size: "100x200" %>
-　  <%= item.name %>
-　  <%= item.price %>
-　<% end %>
+　<% @items_paginate.each do |item| %>
+   <%= link_to customers_item_path(item) do %>
+    <div>
+     <%= attachment_image_tag item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "200x100" %><br>
+     <%= item.name %>
+     <%= item.price %>
+    </div>
+    <% end %>
+ <% end %>
 </div>
 <%= paginate @items_paginate %>
 

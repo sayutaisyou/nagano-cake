@@ -1,0 +1,3 @@
+<% genres.each_with_index do |genre, n| %>
+  <%= link_to genre.name, customers_items_path(order_sort: "#{n + 1}") %>
+<% end %>

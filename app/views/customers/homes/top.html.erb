@@ -1,11 +1,7 @@
  <p>Customers::Homes#top</p>
 
 <div>
-  <!--部分テンプレート化-->
-  <h3>ジャンル検索</h3>
-  <% @genres.each do |genre| %>
-    <%= link_to genre.name, "#" %>
-  <% end %>
+  <%= render 'customers/sidebar', genres: @genres %>
 </div>
 
 <div>
@@ -19,12 +15,16 @@
 <h2>オススメ商品</h2>
 <div>
  <% @items.each do |item| %>
-   <!--< %= attachment_image_tag item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "100x200" %>-->
-   <%= item.name %>
-   <%= item.price %>
+    <%= link_to customers_item_path(item) do %>
+    <div>
+     <%= attachment_image_tag item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "200x100" %><br>
+     <%= item.name %>
+     <%= item.price %>
+    </div>
+    <% end %>
  <% end %>
 </div>
 
-<%= link_to "もっと見る", "#" %>
+<%= link_to "もっと見る", customers_items_path %>
 
 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>

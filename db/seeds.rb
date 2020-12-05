@@ -41,7 +41,9 @@ end
 9.times do |n|
   Item.create!(
     name: "商品#{n + 1}",
-    image_id: "#{n + 1}.to_i",
+    # 変換を挟むので直接カラム名(image_id)と書いて保存するとエラーになる
+    # imageとしてファイルを与えて、refileの機能で変換されて保存してくれる書き方が下記
+    image: File.open("./db/fixtures/1.jpg"),
     introduction: "サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト",
     price: "#{n + 1}00.to_i",
     genre_id: 1.to_i

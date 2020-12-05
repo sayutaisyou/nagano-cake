@@ -3,9 +3,17 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  # def after_sign_in_path_for(resource)
-  #     root_path(resource)
-  # end
+  def after_sign_in_path_for(resource)
+    # 下記の意味：遷移元で与えたパラメータを使って条件分岐
+    case params[:order_sort]
+      # 下記の意味：マイページから遷移してきたときはログアウトさせてからパスワード再設定ページに飛ばす
+      when "0"
+        sign_out
+        new_customer_password_path
+      else
+        root_path
+    end
+  end
 
     def after_sign_out_path_for(resource)
       root_path
