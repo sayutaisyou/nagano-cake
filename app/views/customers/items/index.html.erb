@@ -1,24 +1,24 @@
-<h1>会員側/商品一覧ページ</h1>
-<p>Customers::Items#index</p>
+<div class="row">
+  <div class="col-xs-2">
+    <%= render 'customers/sidebar', genres: @genres %>
+  </div>
 
-<!--部分テンプレート化-->
-<h3>ジャンル検索</h3>
-  <%= render 'customers/sidebar', genres: @genres %>
+  <div class="col-xs-10">
+    <h2><%= @genre_name %>一覧</h2>
+    <p>全<%= @item_count.count %>件</p>
 
-<h2><%= @genre_name %>一覧</h2>
-<p>全<%= @item_count.count %>件</p>
-
-<!--kaminariの記述-->
-<div>
-　<% @items_paginate.each do |item| %>
-   <%= link_to customers_item_path(item) do %>
+    <!--kaminariの記述-->
     <div>
-     <%= attachment_image_tag item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "200x100" %><br>
-     <%= item.name %>
-     <%= item.price %>
+    　<% @items_paginate.each do |item| %>
+       <%= link_to customers_item_path(item) do %>
+        <div>
+         <%= attachment_image_tag item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "200x100" %><br>
+         <%= item.name %>
+         <%= item.price %>
+        </div>
+        <% end %>
+     <% end %>
     </div>
-    <% end %>
- <% end %>
-</div>
-<%= paginate @items_paginate %>
-
+    <%= paginate @items_paginate %>
+  </div>
+<div>
