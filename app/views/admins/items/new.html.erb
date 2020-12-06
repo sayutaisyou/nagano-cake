@@ -1,2 +1,48 @@
-<h1>Admins::Items#new</h1>
-<p>Find me in app/views/admins/items/new.html.erb</p>
+<h3>商品新規登録</h3>
+
+　　<!--下記コメントアウトは保険のコード-->
+    <%#= form_with model: @item, url: admins_items_path, scope: :post, local: true do |f| %>　
+    
+<%= form_with model: @item, url: admins_items_path, local: true do |f| %>
+
+    <% if @item.errors.any? %>
+		<div id="error_explanation">
+			<h3><%= @item.errors.count %>error prohibited this obj from being saved:</h3>
+			<ul>
+				<% @item.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	
+
+    <div class="">
+        <%= f.label :商品画像 %>
+        <%= f.attachment_field :image %>
+    </div>
+    <div class="">
+        <%= f.label :商品名 %>
+        <%= f.text_field :name %>
+    </div>
+    <div class="">
+        <%= f.label :商品説明 %>
+        <%= f.text_area :introduction %>
+    </div>
+    <div class="">
+        <%= f.label :ジャンル %>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択して下さい--" %>
+    </div>
+    <div class="">
+        <%= f.label :税抜価格 %>
+        <%= f.text_field :price %>
+        <span>円</span>
+    </div>
+    <div class="">
+        <%= f.label :販売ステータス %>
+        <%= f.select :is_active, [["販売中", "販売中"], ["売切れ","売切れ"]], include_blank: "--選択して下さい--" %>
+    </div>
+    <div class="">
+        <%= f.submit :新規登録 %>
+    </div>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_02_090014) do
+ActiveRecord::Schema.define(version: 2020_12_05_132508) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id", null: false
@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 2020_12_02_090014) do
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token", null: false
-    t.datetime "reset_password_sent_at", null: false
-    t.datetime "remember_created_at", null: false
+    t.string "reset_password_token"
+    t.string "reset_password_sent_at"
+    t.string "remember_created_at"
     t.string "last_name", null: false
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
