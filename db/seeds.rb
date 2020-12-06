@@ -6,70 +6,43 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-  
-  
-  Admin.create!(
-    email: "aaa@aaa",
-    password: "aaaaaaaa"
+ Genre.create!(
+  [
+    {
+      name: 'ケーキ',
+    },
+    {
+      name: '焼き菓子',
+    },
+    {
+      name: 'プリン',
+    },
+    {
+      name: 'キャンディ',
+    }
+  ]
+)
+
+9.times do |n|
+  Customer.create!(
+    email: "test#{n + 1}@test.com",
+    password: "password",
+    last_name: "佐藤#{n + 1}",
+    first_name: "太郎#{n + 1}",
+    last_name_kana: "サトウ#{n + 1}",
+    first_name_kana: "タロウ#{n + 1}",
+    postal_code: "000000#{n + 1}",
+    address: "東京都新宿区#{n + 1}丁目",
+    telephone_number: "0000000000#{n + 1}"
+  )
+end
+
+9.times do |n|
+  Item.create!(
+    name: "商品#{n + 1}",
+    image_id: "#{n + 1}.to_i",
+    introduction: "サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト",
+    price: "#{n + 1}00.to_i",
+    genre_id: 1.to_i
     )
-
-
-  Genre.create!(
-      name: "ケーキ"
-      )
-      
-  Genre.create!(
-      name: "プリン"
-      )
-
-  Genre.create!(
-      name: "焼き菓子"
-      )
-      
-  Genre.create!(
-      name: "キャンディ"
-      )
-
-  Item.create!([{
-     genre_id: 1,
-     name: "りんご",
-     image: File.open("./app/assets/images/no_image_square.jpg"),
-     introduction: "おいしそうなりんご",
-     price: "100",
-     },
-     {
-     genre_id: 2,
-     name: "レモン",
-     image: File.open("./app/assets/images/no_image_square.jpg"),
-     introduction: "おいしそうなレモン",
-     price: "300",
-     }])
-     
-     
-   5.times do |n|
-      Customer.create!(
-      email: "aca@aa#{n + 1}",
-      password: "aaaaaaaa",
-      last_name: "tanaka",
-      first_name: "sss",
-      last_name_kana: "sakana",
-      first_name_kana: "uo",
-      postal_code: "9999999",
-      address: "中",
-      telephone_number: "0000000000#{n + 1}",
-      is_deleted: "false"
-      )
-  end
-   
-  5.times do |n|
-    Order.create!(
-    customer_id: "#{n + 1}",
-    postal_code: "0000000",
-    address: "あああああ",
-    name: "田中",
-    shipping_cost: "100",
-    total_payment: "222",
-    created_at: "2020/12/06",
-    )
-  end
-     
+end
