@@ -9,10 +9,21 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <header class="header">
+    <% if request.fullpath.include?("admin") %>
+      <%= render 'layouts/admins_header' %>
+    <% else%>
+      <%= render 'layouts/customers_header' %>
+    <% end %>
+  </header>
+
+  <body　class="body">
     <div class ="container">
       <%= yield %>
     </div>
   </body>
 
+  <footer class="footer">
+    <p>© nagano-cake</p>
+  </footer>
 </html>
