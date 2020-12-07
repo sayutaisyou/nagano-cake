@@ -1,3 +1,4 @@
+
 <h1>ショッピングカート</h1>
 <%= link_to customers_cart_items_destroy_all_path, method: :delete do %>
     <button type="button" class="btn btn-danger", data: {confirm: "本当に全て削除しますか？">カートを空にする</button>
@@ -6,9 +7,9 @@
 <!--row切り替え-->
 <!--カートに商品がある時の表示画面-->
 <% if @cart_items.count > 0 %>
-    <table>
+    <table class="table table-bordered">
         <thead>
-            <tr>
+            <tr class="table-active">
                 <th>商品名</th>
                 <th>単価（税込）</th>
                 <th>数量</th>
