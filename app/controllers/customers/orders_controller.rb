@@ -3,50 +3,78 @@ class Customers::OrdersController < ApplicationController
   
   def new
     @order = Order.new
-    @order.customer_id = current_customer.id
-    @order.shipping_cost = 800
-    # CartItemからカート商品を取得
-    cart_items = current_customer.cart_items.all
-    # カート商品から注文商品を作成、orderの合計金額を計算
-    sum = 0
-   
-      cart_items.each do |c|
-        order_detail = OrderDetail.new(order_id: @order.id)
-        order_detail.item_id = c.item_id
-        order_detail.price = c.item.price * 1.1
-        order_detail.amount = c.amount
-        sum += order_detail.price
-      end
-  
-    @order.total_payment = sum
-    @addresses = current_customer.addresses.all
   end
     
   def confirm
-    # orderのユーザー入力部分登録（@order.paymentはparamsで受け取る）
-    @order = Order(params[:id])
-    if radio_button = "0"
-      @order.postal_code = current_customer.customers.postal_code
-      @order.address     = current_customer.customers.address
-      @order.name        = current_customer.customers.name
-    elsif radio_button = "1"
-      @order.postal_code = current_customer.addresses.postal_code.find(params[:id])
-      @order.address     = current_customer.addresses.address.find(params[:id])
-      @order.name        = current_customer.addresses.name.find(params[:id])
-    else
-      @order.postal_code = current_customer.addresses.postal_code.new(order_params)
-      @order.address     = current_customer.addresses.address.new(order_params)
-      @order.name        = current_customer.addresses.name.new(order_params)
+    # Orderの受け皿を作る
+    @order = Order.new(order_params)
+    @order.shipping_cost = 800
+    # CartItemからカート商品を取得
+    @cart_items = current_customer.cart_items.all
+    # ciの税込価格を計算、ciの合計金額を計算
+    @sum = 0
+    @cart_items.each do |ci|
+      ci_tax_price = ci.item.price * 1.1 * ci.amount
+      @sum += ci_tax_price
     end
+    # orderの請求金額を計算
+    @order.total_payment = @sum + @order.shipping_cost
+    # orderのユーザー入力部分登録（@order.paymentはストロングパラメータorder_paramsで受け取り済）
+    if @order.payment_method != ( 'クレジットカード' || '銀行振込' )
+      render :new
+      return
+    end
+    # 選択した配送先の値を設定
+    to_address = params[:to_address]
+    if to_address == "0"
+      @order.postal_code = current_customer.postal_code
+      @order.address     = current_customer.address
+      @order.name        = current_customer.full_name
+      render :confirm
+    elsif to_address == "1"
+      @address = Address.find(params[:name][:id])
+      @order.postal_code = @address.postal_code
+      @order.address     = @address.address
+      @order.name        = @address.name
+      render :confirm
+    elsif to_address == "2"
+      # 新規の配送先を登録する
+      @address = current_customer.addresses.new(address_params)
+      @address.save
+      # 作成した新規配送先を基に、@orderのカラムを埋める
+      @order.postal_code = @address.postal_code
+      @order.address     = @address.address
+      @order.name        = @address.name
+      render :confirm
+    else
+      render :new
+      return
+    end
+    # POSTメソッドなのでrenderしてビューを取得する必要がある
+    # fields_for 複数データを一度に保存する時に使用可能
   end
 
   def complete
   end
   
   def create
-    @order = Order(params[:id])
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    # CartItemからカート商品を取得
+    cart_items = current_customer.cart_items.all
+    # カート商品から注文商品を作成、orderの合計金額を計算
+    sum = 0
+    cart_items.each do |ci|
+      order_detail = OrderDetail.new(order_id: @order.id)
+      order_detail.item_id = ci.item_id
+      order_detail.price = ci.item.price * 1.1
+      order_detail.amount = ci.amount
+      order_detail.save
+      # ここでカートitemを順次削除してもよい
+      sum += order_detail.price
+    end
     if @order.save
-      current_user.cart_items.destroy_all
+      current_customer.cart_items.destroy_all
       redirect_to customers_orders_complete_path
     else
       render :confirm
@@ -58,16 +86,21 @@ class Customers::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order(params[:id])
-    @order_details = @order.order_details
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details.all
+    @order_details.order_id = @order.id
   end
   
   protected
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment)
   end
   
-  def order_detail_params
-    params.require(:order_detail).permit(:payment_method, :postal_code, :address, :name)
+  def customer_params
+    params.require(:customer).permit(:last_name, :first_name)
+  end
+  
+  def address_params
+    params.require(:address).permit(:postal_code, :address, :name)
   end
 end
