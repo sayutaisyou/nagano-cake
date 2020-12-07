@@ -4,7 +4,7 @@ class Customers::OrdersController < ApplicationController
   def new
     @order = Order.new
   end
-    
+  
   def confirm
     # Orderの受け皿を作る
     @order = Order.new(order_params)
@@ -56,7 +56,7 @@ class Customers::OrdersController < ApplicationController
 
   def complete
   end
-  
+
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id

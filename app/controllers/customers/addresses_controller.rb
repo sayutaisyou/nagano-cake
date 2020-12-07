@@ -10,7 +10,7 @@ class Customers::AddressesController < ApplicationController
   def edit
     @address = Address.find(params[:id])
   end
-  
+
   def create
     @address = current_customer.addresses.new(address_params)
     @addresses = current_customer.addresses.all
@@ -20,7 +20,7 @@ class Customers::AddressesController < ApplicationController
       render :index
     end
   end
-  
+
   def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
@@ -29,14 +29,14 @@ class Customers::AddressesController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @address = Address.find(params[:id])
     @address.destroy
     redirect_to customers_addresses_path
   end
-  
-  
+
+
   protected
   def address_params
     params.require(:address).permit(:postal_code, :address, :name)
