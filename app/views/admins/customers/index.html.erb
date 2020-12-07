@@ -15,7 +15,7 @@
       <tr>
         <td><%= customer.id %></td>
         <td>
-          <%= link_to admins_orders(customer) do %> <!--会員詳細ページへ-->
+          <%= link_to admins_customer_path(customer) do %> <!--会員詳細ページへ-->
             <%= customer.last_name + customer.first_name %>
           <% end %>
         </td>
