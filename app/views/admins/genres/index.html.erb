@@ -1,12 +1,12 @@
 <h1>ジャンル一覧・追加</h1>
 
-<%= form_with model: @genre, local:true do |f| %>
+<%= form_with model: @genre, url: admins_genres_path, local:true do |f| %>
   <div>
     <%= f.label :ジャンル %>
     <%= f.text_field :name %>
     <%= f.radio_button :is_active, :true %>
     <%= f.label :is_active, "有効" %>
-    <%= d.radio_button :is_active, :false %>
+    <%= f.radio_button :is_active, :false %>
     <%= f.label :is_active, "無効" %>
     <%= f.submit "追加" %>
   </div>
@@ -18,7 +18,7 @@
       <th>状態</th>
       <th colspan="2"></th>
     </tr>
-    
+
   </thead>
 
   <tbody>
@@ -26,9 +26,6 @@
       <tr>
         <td>
           <%= genre.name %>
-        </td>
-        <td>
-          <%= genre.body %>
         </td>
         <td>
           <% if genre.is_active == true %>
