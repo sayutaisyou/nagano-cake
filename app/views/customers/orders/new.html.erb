@@ -1,0 +1,36 @@
+<h1>注文情報入力</h1>
+<div>
+    <b>支払方法</b>
+    <%= form_with model:@order, url: customers_orders_confirm_path, local: true do |f| %>
+        <%= f.radio_button :payment_method, :クレジットカード %>
+        <%= f.label :クレジットカード %>
+        <%= f.radio_button :payment_method, :銀行振込 %>
+        <%= f.label :銀行振込 %>
+        
+    <b>お届け先</b>
+        <!--ご自身の住所-->
+        <!--radio_button_tagを使うとカラム以外の値を定義できる-->
+        <%= radio_button_tag(:to_address, 0) %>
+        <%= f.label :ご自身の住所 %>
+        <%= current_customer.postal_code %>
+        <%= current_customer.address %>
+        <%= current_customer.full_name %>
+        <!--登録済み住所から選択-->
+        <%= radio_button_tag(:to_address, 1) %>
+        <%= f.label :登録済み住所から選択 %>
+        <!--コントローラーで@addressesを定義すると[undefined method `map' for nil:NilClass]が出るため、下記の記載とする-->
+        <!--< %= f.collection_select :name, current_customer.addresses.all, :id, :post_address_name %>だと、orderモデルにあるカラムじゃないので不具合-->
+        <%= collection_select(:name, :id, current_customer.addresses, :id, :post_address_name) %>
+        <!--新しいお届け先-->
+        <%= radio_button_tag(:to_address, 2) %>
+        <%= label_tag(:address, "新しいお届け先") %>
+        <%= text_field_tag 'address[postal_code]' %>
+        <%= label_tag(:address, "郵便番号") %>
+        <%= text_field_tag 'address[address]' %>
+        <%= label_tag(:address, "住所") %>
+        <%= text_field_tag 'address[name]' %>
+        <%= label_tag(:address, "宛名") %>
+        <!--submitボタン-->
+        <%= f.submit "確認画面へ進む" %>
+    <% end %>
+</div>
