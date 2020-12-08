@@ -1,3 +1,40 @@
 // Place all the styles related to the customers/Orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+*{
+    margin: 0;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+.title {
+    margin: 0 50px 20px 20px;
+}
+
+.text-center {
+    vertical-align: middle;
+}
+
+.order-table {
+    width: 100%;
+    margin: 30px auto;
+}
+
+.input-left-20 {
+    margin-left: 20px ;
+}
+
+.input-left-30 {
+    margin-left: 30px ;
+}
+
+.input-left-20-pad {
+    padding-left: 20px ;
+}
+
+.float-right {
+    margin-right: 0px;
+}

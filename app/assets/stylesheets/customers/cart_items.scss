@@ -1,3 +1,19 @@
 // Place all the styles related to the customers/cart_items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+*{
+    margin: 0;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+.title {
+    margin: 0 50px 20px 20px;
+}
+
+.text-center {
+    vertical-align: middle;
+}

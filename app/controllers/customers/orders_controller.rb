@@ -62,18 +62,18 @@ class Customers::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     # CartItemからカート商品を取得
     cart_items = current_customer.cart_items.all
-    # カート商品から注文商品を作成、orderの合計金額を計算
-    sum = 0
-    cart_items.each do |ci|
-      order_detail = OrderDetail.new(order_id: @order.id)
-      order_detail.item_id = ci.item_id
-      order_detail.price = ci.item.price * 1.1
-      order_detail.amount = ci.amount
-      order_detail.save
-      # ここでカートitemを順次削除してもよい
-      sum += order_detail.price
-    end
     if @order.save
+      # カート商品から注文商品を作成、orderの合計金額を計算
+      sum = 0
+      cart_items.each do |ci|
+        order_detail = OrderDetail.new(order_id: @order.id)
+        order_detail.item_id = ci.item_id
+        order_detail.price = ci.item.price * 1.1
+        order_detail.amount = ci.amount
+        order_detail.save
+        # ここでカートitemを順次削除してもよい
+        sum += order_detail.price
+      end
       current_customer.cart_items.destroy_all
       redirect_to customers_orders_complete_path
     else
@@ -82,18 +82,21 @@ class Customers::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.orders.all
+    @orders = Order.where(customer_id: current_customer.id)
   end
 
   def show
     @order = Order.find(params[:id])
-    @order_details = @order.order_details.all
-    @order_details.order_id = @order.id
+    @order_details = OrderDetail.where(order_id: @order.id)
   end
   
   protected
   def order_params
     params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment)
+  end
+  
+  def order_detail_params
+    params.require(:order_detail).permit(:order_id, :item_id, :price, :amount)
   end
   
   def customer_params
