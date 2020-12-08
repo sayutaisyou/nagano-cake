@@ -1,8 +1,12 @@
-<h3>ジャンル検索</h3>
-<ul>
-  <% genres.each_with_index do |genre, n| %>
-    <li>
-      <%= link_to genre.name, customers_items_path(order_sort: "#{n + 1}") %>
-    </li>
-  <% end %>
-</ul>
+
+<div class="col-md-12  border">
+  <ul class="list-group">
+    <li class="text-center border-bottom yohaku"><b>ジャンル検索</b></li>
+    <% genres.each_with_index do |genre, n| %>
+      <li class="py-3">
+        <%= link_to genre.name, customers_items_path(order_sort: "#{n + 1}")%>
+      </li>
+    <% end %>
+  </ul>
+</div>
+

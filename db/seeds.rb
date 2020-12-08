@@ -42,9 +42,20 @@ end
     name: "商品#{n + 1}",
     # 変換を挟むので直接カラム名(image_id)と書いて保存するとエラーになる
     # imageとしてファイルを与えて、refileの機能で変換されて保存してくれる書き方が下記
-    image: File.open("./db/fixtures/1.jpg"),
+    image: File.open("./db/fixtures/0cake.jpg"),
     introduction: "サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト",
-    price: "#{n + 1}00.to_i",
+    price: "#{n + 1}00".to_i,
     genre_id: 1.to_i
     )
 end
+
+Item.create!(
+    name: "商品",
+    # 変換を挟むので直接カラム名(image_id)と書いて保存するとエラーになる
+    # imageとしてファイルを与えて、refileの機能で変換されて保存してくれる書き方が下記
+    image: File.open("./db/fixtures/1yakigashi.jpg"),
+    introduction: "サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト",
+    price: "1000".to_i,
+    genre_id: 2.to_i
+    )
+

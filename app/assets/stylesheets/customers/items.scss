@@ -1,3 +1,37 @@
 // Place all the styles related to the customers/Items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// サイドバー関連（ここから）
+.list_border {
+  border: solid;
+  border-width: 10px;
+}
+
+.border {
+  border-width: 10px;
+}
+
+.yohaku {
+  padding: 8px 0;
+}
+// サイドバー関連（ここまで）
+
+.right {
+  margin-right: 60px;
+}
+
+.title {
+  font-size: 36px;
+}
+
+.wrap {
+  display: inline-block;
+  flex-wrap: wrap;
+}
+
+// 要素名:first-child {プロパティ名:値;}
+
+// .row > div {
+//   margin: 0;
+// }
