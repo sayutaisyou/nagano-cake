@@ -1,6 +1,12 @@
 class Customers::CartItemsController < ApplicationController
   before_action :authenticate_customer!
-  
+  before_action :hoge, if: proc { current_customer.is_deleted == true }
+
+  def hoge
+    sign_out
+    redirect_to new_customer_registration_path
+  end
+
   def index
     @cart_items = current_customer.cart_items.all
   end

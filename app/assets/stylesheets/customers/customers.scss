@@ -1,3 +1,18 @@
 // Place all the styles related to the customers/customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.moji {
+  margin: 0 auto;
+  text-align: center;
+}
+
+a {
+  color: #fff;
+}
+
+a:link { color: #fff; } //  未訪問のリンク
+a:visited { color: #fff; } //  訪問済みのリンク
+a:hover { color: #fff; } //  ポイント時のリンク
+a:active { color: #fff; } //  選択中のリンク
+

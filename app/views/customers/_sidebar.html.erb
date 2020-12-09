@@ -1,0 +1,14 @@
+<div class ="row">
+  <div class="col-md-12  border">
+    <ul class="list-group">
+      <li class="text-center border-bottom head"><b>ジャンル検索</b></li>
+      <% genres.each_with_index do |genre, n| %>
+        <li class="py-3 body">
+          <%= link_to genre.name, customers_items_path(order_sort: "#{n + 1}")%>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+

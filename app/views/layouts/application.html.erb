@@ -8,23 +8,27 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
-  <header class="header">
-    <% if request.fullpath.include?("admin") %>
-      <%= render 'layouts/admins_header' %>
-    <% else%>
-      <%= render 'layouts/customers_header' %>
-    <% end %>
-  </header>
 
-  <body　class="body">
-    <%= yield %>
+  <body>
+    <header class="header">
+      <% if request.fullpath.include?("admin") %>
+        <%= render 'layouts/admins_header' %>
+      <% else%>
+        <%= render 'layouts/customers_header' %>
+      <% end %>
+    </header>
+
+    <main class="main">
+      <div class ="container-fluid">
+        <%= yield %>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class ="container-fluid">
+        <p>© nagano-cake</p>
+      </div>
+    </footer>
   </body>
-  
-  <footer class="footer">
-    <p>© nagano-cake</p>
-  </footer>
-  
-  
-  
+
 </html>
