@@ -1,3 +1,53 @@
 // Place all the styles related to the admins/customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.customer-page-title{
+  display: inline-block;
+  background-color: #C0C0C0;
+  padding: 0 20px;
+  text-align: center;
+  margin-left: 60px;
+}
+
+.customer-table-group {
+  margin-left: 200px;
+  margin-top: 50px;
+  width: 80%;
+}
+
+.customer-show-page-title {
+  padding: 0 20px;
+  display: inline-block;
+  background-color: #C0C0C0;
+  text-align: center;
+  margin-left: 80px;
+}
+
+.customer-show-table-group{
+  margin-left: 80px;
+  margin-top: 80px;
+}
+tr {
+  height: 60px;
+}
+.customer-status {
+  margin-left: 40px;
+  padding: 10px;
+  border:  solid 1px black;
+  border-radius: 8px;
+  text-align: center;
+}
+.customer-edit-page-title {
+  display: inline-block;
+  padding: 0 20px;
+  background-color: #C0C0C0;
+  text-align: center;
+  margin-left: 80px;
+}
+.customer-edit-table-group {
+  margin-left: 80px;
+  margin-top: 80px;
+}
+.text-center {
+  border-radius: 5px;
+}
