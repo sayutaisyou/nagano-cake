@@ -1,22 +1,32 @@
-<h1>会員側/商品一覧ページ</h1>
-<p>Customers::Items#index</p>
+<div class="row mx-0">
+  <div class="col-lg-2">
+    <%= render 'customers/sidebar', genres: @genres %>
+  </div>
 
-<!--部分テンプレート化-->
-<h3>ジャンル検索</h3>
-<%= @genres.each do |genre| %>
-  <%= link_to genre.name, "#" %>
-<% end %>
 
-<h2>商品一覧</h2>
-<p>全<%= @items.count %>件</p>
+  <div class="col-lg-9 ml-3">
+    <div class="row end ml-0">
+      <h3><b><%= @genre_name %>一覧</b></h3>
+      <p class="ml-3">全<%= @item_count.count %>件</p>
+    </div>
 
-<!--kaminariの記述-->
-<div>
-　<%= @items_paginate.each do |item| %>
-　  <%= attachment_image_tag item, :item_image, format: 'jpeg', fallback: "no_image.jpg", size: "100x200" %>
-　  <%= item.name %>
-　  <%= item.price %>
-　<% end %>
+    <div class ="row flex-row">
+      <% @items_paginate.each do |item| %>
+        <%= link_to customers_item_path(item) do %>
+          <div class="m-3">
+            <%= attachment_image_tag item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "200x125" %><br>
+            <%= item.name %><br>
+            ¥<%= item.price %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-2 offset-lg-5 ">
+        <p><%= paginate @items_paginate %></p>
+      </div>
+    </div>
+
+  </div>
 </div>
-<%= paginate @items_paginate %>
-
