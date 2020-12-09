@@ -1,27 +1,47 @@
 <div class="row">
-  <div class="col-lg-6 col-lg-offset-3 margen">
-    <p><b>会員の方はこちらからログイン</b></p>
+  <div class="col-lg-8 offset-lg-2">
+    <div class ="row">
+      <p><span class="bg-origin pl-4 pr-4">会員の方はこちらからログイン</span></p>
+    </div>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="field">
-        <%= f.label :メールアドレス %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class ="row field mb-2">
+        <div class="col-lg-1"></div>
+        <%= f.label :メールアドレス, class: "col-lg-2" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-lg-9" %>
       </div>
 
-      <div class="field">
-        <%= f.label :パスワード %>
-        <%= f.password_field :password, autocomplete: "current-password" %>
+      <div class ="row field mb-2">
+        <div class="col-lg-1"></div>
+        <%= f.label :パスワード, class: "col-lg-2" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "col-lg-9" %>
       </div>
 
-      <p><span><%= link_to "=>パスワードを忘れた方はこちら", new_customer_password_path %></span>
+      <div class ="row kasen">
+        <%= link_to "=>パスワードを忘れた方はこちら", new_customer_password_path, class: "col-lg-12 text-right pr-0" %>
+      </div>
 
-      <div class="actions">
-        <%= f.submit "ログイン" %>
+      <div class ="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-9 pl-0">
+          <div class="actions">
+            <%= f.submit "ログイン", class: "btn btn-sm btn-primary pl-3 pr-3" %>
+          </div>
+        </div>
       </div>
     <% end %>
 
-    <p><b>登録がお済みでない方</b></p>
-    <p><span><%= link_to "こちら", new_customer_registration_path %></span>    から新規登録を行ってください。</p>
+    <div class ="row">
+       <p><span class="bg-origin pl-4 pr-4">登録がお済みでない方</span></p>
+    </div>
+    <div class ="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-11">
+         <span class="kasen mr-3"><%= link_to "こちら", new_customer_registration_path %></span>から新規登録を行ってください。
+      </div>
+    </div>
   </div>
-  
+
 </div>
+
+

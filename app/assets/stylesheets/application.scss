@@ -15,6 +15,7 @@
  */
 @import "bootstrap";
 
+
 ul {
   list-style: none;
   padding-left: 0;
@@ -28,10 +29,13 @@ ul {
     top: 20%;
 }
 
-a:link { color: #4d4d4d; } //  未訪問のリンク
-a:visited { color: #303030; } //  訪問済みのリンク
-a:hover { color: #ff0000; } //  ポイント時のリンク
-a:active { color: #ff8000; } //  選択中のリンク
+a:link { color: #737373; } //  未訪問のリンク
+a:visited { color: #3b3b3b; } //  訪問済みのリンク
+a:hover { color: #3b3b3b; } //  ポイント時のリンク
+a:active {
+  color: #ff8000;
+  text-decoration: none !important;
+}
 
 .container-fluid {
   padding: 0 30px;
@@ -47,4 +51,13 @@ a:active { color: #ff8000; } //  選択中のリンク
 
 .margen {
   margin: 0 auto;
+}
+
+.bg-origin {
+  background-color: #e3e3e3;
+}
+
+.kasen a {
+  text-decoration: underline;
+  color: #204dd4;
 }

@@ -30,8 +30,19 @@
   flex-wrap: wrap;
 }
 
-// 要素名:first-child {プロパティ名:値;}
+.end {
+  align-items: flex-end;
+}
 
-// .row > div {
-//   margin: 0;
+.choice {
+  justify-content: flex-end;
+}
+
+
+// p {
+//   font-size:0;
+// }
+
+// p:before {
+//   font-size: 12px; content: "かきくけこ";
 // }

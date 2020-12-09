@@ -12,13 +12,35 @@
   border-width: 10px;
 }
 
-.yohaku {
+.head {
   padding: 8px 0;
+}
+
+.body {
+  cursor : pointer;
+  position: relative;
+}
+
+.body a {
+  display:block;
+}
+
+// .body a {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   height: 100%;
+//   width: 100%;
+// }
+
+.body:hover {
+  background-color: #cfcfcf;
+  color: gray;
 }
 // サイドバー関連（ここまで）
 
 h3 {
-  padding: 20px 0;
+  padding: 20px 0 5px;
 }
 
 .moji {
