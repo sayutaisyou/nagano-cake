@@ -6,7 +6,7 @@
     <th>顧客ID</th>
     <td><%= @customer.id %></td>
     <td>
-      <%= if @customer.is_deleted == false %>
+      <% if @customer.is_deleted == false %>
         有効会員
       <% else %>
         退会済
@@ -36,9 +36,9 @@
   <tr>
     <th>メールアドレス</th><td><%= @customer.email %></td>
   </tr>
-  
+
   <tr>
-    <td><%= link_to '編集する', edit_admins_customer(@customer) %></td><td><%= link_to '注文履歴一覧を見る', admins_order(@customer) %></td>
+    <td><%= link_to '編集する', edit_admins_customer_path(@customer) %></td><td><%= link_to '注文履歴一覧を見る', admins_orders_path(id: @customer.id, order_sort: 1) %></td>
   </tr>
-  
+
 </table>

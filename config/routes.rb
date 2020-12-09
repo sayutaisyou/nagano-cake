@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'customers/homes#top' 
+  root 'customers/homes#top'
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   namespace :admins do
     get 'homes/top'
-    resources :order_details, only:[:update]
     resources :orders, only:[:index, :show, :update]
+    resources :order_details, only:[:update]
     resources :customers, only:[:index, :show, :edit, :update]
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   namespace :customers do
     get 'homes/about'
-    get 'orders/confirm'
+    post 'orders/confirm'
     get 'orders/complete'
     resources :orders, only:[:new, :create, :index, :show]
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
