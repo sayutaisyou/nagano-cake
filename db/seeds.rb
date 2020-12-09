@@ -43,7 +43,85 @@
      image: File.open("./app/assets/images/no_image_square.jpg"),
      introduction: "おいしそうなレモン",
      price: "300",
-     }])
+     },
+     {
+     genre_id: 2,
+     name: "レモン",
+     image: File.open("./app/assets/images/no_image_square.jpg"),
+     introduction: "おいしそうなレモン",
+     price: "300",
+     },
+     {
+     genre_id: 2,
+     name: "レモン",
+     image: File.open("./app/assets/images/no_image_square.jpg"),
+     introduction: "おいしそうなレモン",
+     price: "300",
+     },
+     {
+     genre_id: 2,
+     name: "レモン",
+     image: File.open("./app/assets/images/no_image_square.jpg"),
+     introduction: "おいしそうなレモン",
+     price: "300",
+     },
+     {
+     genre_id: 2,
+     name: "レモン",
+     image: File.open("./app/assets/images/no_image_square.jpg"),
+     introduction: "おいしそうなレモン",
+     price: "300",
+     },
+     {
+     genre_id: 2,
+     name: "レモン",
+     image: File.open("./app/assets/images/no_image_square.jpg"),
+     introduction: "おいしそうなレモン",
+     price: "300",
+     },
+     {
+     genre_id: 2,
+     name: "レモン",
+     image: File.open("./app/assets/images/no_image_square.jpg"),
+     introduction: "おいしそうなレモン",
+     price: "300",
+     },
+     {
+     genre_id: 2,
+     name: "レモン",
+     image: File.open("./app/assets/images/no_image_square.jpg"),
+     introduction: "おいしそうなレモン",
+     price: "300",
+     },
+     {
+     genre_id: 2,
+     name: "レモン",
+     image: File.open("./app/assets/images/no_image_square.jpg"),
+     introduction: "おいしそうなレモン",
+     price: "300",
+     },
+     {
+     genre_id: 2,
+     name: "レモン",
+     image: File.open("./app/assets/images/no_image_square.jpg"),
+     introduction: "おいしそうなレモン",
+     price: "300",
+     },
+     {
+     genre_id: 2,
+     name: "レモン",
+     image: File.open("./app/assets/images/no_image_square.jpg"),
+     introduction: "おいしそうなレモン",
+     price: "300",
+     },
+     {
+     genre_id: 2,
+     name: "レモン",
+     image: File.open("./app/assets/images/no_image_square.jpg"),
+     introduction: "おいしそうなレモン",
+     price: "300",
+     },
+     ])
      
      
    5.times do |n|
