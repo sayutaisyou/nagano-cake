@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   namespace :customers do
     get 'homes/about'
-    get 'orders/confirm'
+    post 'orders/confirm'
     get 'orders/complete'
     resources :orders, only:[:new, :create, :index, :show]
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]

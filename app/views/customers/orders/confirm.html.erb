@@ -1,2 +1,91 @@
-<h1>Customers::Orders#confirm</h1>
-<p>Find me in app/views/customers/orders/confirm.html.erb</p>
+<div class="row">
+    <div class="col-xs-10 col-xs-offset-1 title">
+        <h1>注文情報確認</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="table-active">
+                        <th>商品名</th>
+                        <th>単価（税込）</th>
+                        <th>数量</th>
+                        <th>小計</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @cart_items.each do |cart_item| %>
+                        <tr>
+                            <td class="align-middle">
+                                <%= attachment_image_tag(cart_item.item, :image, :fill, 80, 50, fallback: "no-image-mini.jpg") %>
+                                <%= cart_item.item.name %>
+                            </td>
+                            <td class="align-middle"><%= cart_item.item.price.to_s(:delimited) %></td>
+                            <td class="align-middle"><%= cart_item.amount %></td>
+                            <td class="align-middle"><%= (cart_item.item.price * cart_item.amount).to_s(:delimited) %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-4 input-left-30">
+            <%= form_with model: @order, url: customers_orders_path, local: true do |f| %>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="table-active">送料</td>
+                            <td>
+                                <%= @order.shipping_cost.to_s(:delimited) %>
+                                <%= f.hidden_field :shipping_cost, :value => @order.shipping_cost %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-active">商品合計</td>
+                            <td><%= @sum.round.to_s(:delimited) %></td>
+                        </tr>
+                        <tr>
+                            <td class="table-active">請求金額</td>
+                            <td><%= @order.total_payment.to_s(:delimited) %>
+                                <%= f.hidden_field :total_payment, :value => @order.total_payment %>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 input-left-30">
+        <table>
+            <tr>
+                <td>
+                    <b>支払方法</b>
+                </td>
+                <td class="input-left-20-pad">
+                    <%= @order.payment_method %>
+                    <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>お届け先</b>
+                </td>
+                <td class="input-left-20-pad">
+                    <%= @order.postal_code %>
+                    <%= f.hidden_field :postal_code, :value => @order.postal_code %>
+                    <%= @order.address %>
+                    <%= f.hidden_field :address, :value => @order.address %>
+                    <br>
+                    <%= @order.name %>
+                    <%= f.hidden_field :name, :value => @order.name %>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row justify-content-center">
+            <%= f.submit "購入を確定する", :class=>"btn btn-success" %>
+        <% end %>
+</div>

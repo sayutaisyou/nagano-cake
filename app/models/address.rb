@@ -6,4 +6,8 @@ class Address < ApplicationRecord
    validates :postal_code, presence: true, length: { is: 7 }
    validates :address, presence: true
  
+#  order/newで使う値を定義
+   def post_address_name
+    self.postal_code + ' ' + self.address + ' '+ self.name
+   end
 end

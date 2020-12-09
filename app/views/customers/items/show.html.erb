@@ -1,22 +1,52 @@
-<h1>会員側/商品詳細ページ</h1>
-<p>Customers::Items#show</p>
+<div class ="row mx-0">
+  <div class ="col-lg-2">
+    <%= render 'customers/sidebar', genres: @genres %>
+  </div>
 
-<!--部分テンプレート化-->
-<h3>ジャンル検索</h3>
-<%= @genres.each do |genre| %>
-  <%= link_to genre.name, "#" %>
-<% end %>
+  <div class ="col-lg-10">
+    <div class="row">
+      <div class ="col-lg-5 text-right">
+         <%= attachment_image_tag @item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "400x250" %>
+      </div>
+      <div class ="col-lg-6">
+        <div class="row">
+          <h3><b><%= @item.name%></b></h3>
+          <div class="mb-4"><%= @item.introduction %></div>
+        </div>
 
-<div>
-  <%= attachment_image_tag @item, :item_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x300" %>
-  <%= @item.name %>
-　<%= @item.price %>
-　<%= "¥#{@item.price}" %><p>(税込)</p>
+         <div class="row end ml-0">
+           <h3><b>¥  <%= syouhizei(@item.price)%></b></h3>
+           <p class="ml-3">(税込)</p>
+         </div>
+
+
+        　<%= form_with model: @cart_item, url: customers_cart_items_path, method: :get,  local: true do |f| %>
+            <!--hidden_fieldの安全性に関して未検討("hiddenは利用者からの書き換えはできますが、それ以外からの書き換えに対しては堅牢"と記述された記事あり。)-->
+            <%= f.hidden_field :item_id, :value => @item.id %>
+            <% if customer_signed_in? %>
+              <%= f.hidden_field :customer_id, :value => current_customer.id %>
+            <% end %>
+            <div class="row flex-row choice">
+              <!--<div class="dropdown">-->
+                <!--<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">-->
+                <!--  ドロップダウンボタン-->
+                <!--</button>-->
+                <!--<div class="dropdown-menu">-->
+                  <%= f.select :amount, {"1": 1, "2": 2, "3": 3}, include_blank: "個数選択", class: "dropdown-item" %>
+                <!--</div>-->
+              <!--</div>-->
+
+              <div class="col-lg-3">
+                <%= f.submit "カートに入れる", class: "btn btn-primary btn-sm" %>
+              </div>
+            </div>
+          <% end %>
+
+
+    </div>
+
+
+
+  </div>
 </div>
 
-<%= form_with model: @item, url: _path, local: true do |f| %>
-  <div>
-    <!--個数選択のドロップダウンメニュー-->
-  </div>
-  <%= f.submit "カートに入れる" %>
-<% end %>

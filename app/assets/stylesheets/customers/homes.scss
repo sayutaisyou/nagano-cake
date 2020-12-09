@@ -1,3 +1,50 @@
 // Place all the styles related to the customers/Homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// サイドバー関連（ここから）
+.list_border {
+  border: solid;
+  border-width: 10px;
+}
+
+.border {
+  border-width: 10px;
+}
+
+.head {
+  padding: 8px 0;
+}
+
+.body {
+  cursor : pointer;
+  position: relative;
+}
+
+.body a {
+  display:block;
+}
+
+// .body a {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   height: 100%;
+//   width: 100%;
+// }
+
+.body:hover {
+  background-color: #cfcfcf;
+  color: gray;
+}
+// サイドバー関連（ここまで）
+
+h3 {
+  padding: 20px 0 5px;
+}
+
+.moji {
+  margin: 0 auto;
+  text-align: center;
+}
+
