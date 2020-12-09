@@ -1,2 +1,55 @@
-<h1>Admins::Customers#edit</h1>
-<p>Find me in app/views/admins/customers/edit.html.erb</p>
+<div class="customer-edit-page-title">
+  <h3><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h3>
+</div>
+
+<%= form_with model: @customer, url: admins_customer_path(@customer), local:true do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+<div class="customer-edit-table-group">
+  <table>
+
+    <tr>
+      <th>会員ID</th><td><%= @customer.id %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :氏名 %></th><td><%= f.text_field :last_name, :class => 'text-center' %><i class="ml-3"><%= f.text_field :first_name, :class => 'text-center' %></i></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :フリガナ %></th><td><%= f.text_field :last_name_kana, :class => 'text-center' %><i class="ml-3"><%= f.text_field :first_name_kana, :class => 'text-center' %></i></td>
+    </tr>
+    <tr>
+      <th><%= f.label :郵便番号 %></th><td><%= f.text_field :postal_code, :class => 'text-center' %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :住所 %></th>
+      <td><%= f.text_field :address, :size => "75", :class => 'text-center' %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :電話番号 %></th><td><%= f.text_field :telephone_number, :class => 'text-center' %><td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :メールアドレス %></th><td><%= f.text_field :email, :size => "25", :class => 'text-center' %></td>
+    </tr>
+
+    <tr>
+      <th>会員ステータス</th>
+      <td>
+        <%= f.radio_button :is_deleted, :false %>
+        <%= f.label :is_deleted, "有効" %>
+        <%= f.radio_button :is_deleted, :true %>
+        <%= f.label :is_deleted, "退会済" %>
+      </td>
+    </tr>
+
+    <tr>
+      <td><%= f.submit '変更を保存する', class: 'btn btn-primary' %></td>
+    </tr>
+
+  </table>
+<% end %>
+</div>
+

@@ -1,2 +1,32 @@
-<h1>Customers::Items#index</h1>
-<p>Find me in app/views/customers/items/index.html.erb</p>
+<div class="row mx-0">
+  <div class="col-lg-2">
+    <%= render 'customers/sidebar', genres: @genres %>
+  </div>
+
+
+  <div class="col-lg-9 ml-3">
+    <div class="row end ml-0">
+      <h3><b><%= @genre_name %>一覧</b></h3>
+      <p class="ml-3">全<%= @item_count.count %>件</p>
+    </div>
+
+    <div class ="row flex-row">
+      <% @items_paginate.each do |item| %>
+        <%= link_to customers_item_path(item) do %>
+          <div class="m-3">
+            <%= attachment_image_tag item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "200x125" %><br>
+            <%= item.name %><br>
+            ¥<%= item.price %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-2 offset-lg-5 ">
+        <p><%= paginate @items_paginate %></p>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,2 +1,16 @@
-<h1>Admins::Genres#edit</h1>
-<p>Find me in app/views/admins/genres/edit.html.erb</p>
+<div class="genre-page-title">
+  <h3>ジャンル編集</h3>
+</div>
+
+<div class="genre-form-group">
+  <%= form_with model: @genre, url: admins_genre_path, local:true do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+    <%= f.label :ジャンル %>
+    <%= f.text_field :name %>
+    <%= f.radio_button :is_active, :true %>
+    <%= f.label :is_active, "有効" %>
+    <%= f.radio_button :is_active, :false %>
+    <%= f.label :is_active, "無効" %>
+    <%= f.submit '変更を保存する', class: 'btn btn-primary genre-btn' %>
+  <% end %>
+</div>

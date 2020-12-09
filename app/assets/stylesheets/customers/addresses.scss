@@ -1,3 +1,25 @@
 // Place all the styles related to the customers/Addresses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+.title {
+    margin: 0 50px 20px 20px;
+}
+
+.address-table {
+    width: 100%;
+    margin: 30px auto;
+}
+
+.td-center {
+    vertical-align: middle;
+}

@@ -1,2 +1,89 @@
-<h1>Admins::Orders#show</h1>
-<p>Find me in app/views/admins/orders/show.html.erb</p>
+<div class="order-page-title">
+  <h3>注文履歴詳細</h3>
+</div>
+
+<div class="row order-data ml-5 mb-5">
+  <table>
+    <tbody>
+      <tr>
+        <th>購入者</th>
+        <td>
+          <%= link_to admins_customer_path(@order) do %>
+          <%= @order.customer.last_name + @order.customer.first_name %>
+          <% end %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>配送先</th>
+        <td>〒<%= @order.postal_code + " " + @order.address %><br/><%= @order.name %></td>
+      </tr>
+
+      <tr>
+        <th>支払い方法</th>
+        <td><%= @order.payment_method %></td>
+      </tr>
+
+      <tr>
+        <th>注文ステータス</th>
+        <td>
+          <%= form_with model: @order, url: admins_order_path(@order), local: true do |f| %>
+            <%= f.select :status, [["入金待ち", "入金待ち" ], ["入金確認", "入金確認" ], ["製作中", "製作中" ], ["発送準備中", "発送準備中" ], ["発送済み", "発送済み" ]] %>
+            <%= f.submit "更新", class: 'btn btn-primary ml-3' %>
+          <% end %>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+<div class="row ml-5 order-detail-form">
+  <div class="col-xs-8">
+    <table class='table table-hover table-inverse'>
+      <thead class="thead-light">
+        <tr>
+          <th>商品名</th>
+          <th width="120">単価(税込)</th>
+          <th width="80">数量</th>
+          <th width="120">小計</th>
+          <th>制作ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sum = 0 %>
+        <% @order_details.each do |order_detail| %>
+          <tr>
+           <td><%= order_detail.item.name %></td>
+           <td><%= (order_detail.item.price * 1.1).floor %></td>
+           <td><%= order_detail.amount %></td>
+           <td><%= (order_detail.item.price * order_detail.amount * 1.1).floor %></td><!--単価　＊　個数　＊　税率-->
+           <% @sum += (order_detail.item.price * order_detail.amount * 1.1).floor %>
+           <td><!-- order_id: @order.id-->
+             <%= form_with model: order_detail, url: admins_order_detail_path(order_detail), method: :patch, local: true do |f| %>
+             <%= f.select :making_status, [["製作不可", "製作不可"], ["製作待ち", "製作待ち"], ["製作中", "製作中"], ["製作完了", "製作完了"]] %>
+             <i class="order-detail-btn"><%= f.submit "更新", class: 'btn btn-primary ml-3' %></i>
+             <% end %>
+           </td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-xs-4 ml-5 payment">
+    <table>
+      <tbody>
+        <tr>
+          <th>商品合計</th><td width="100" align="right"><%= @sum %>円</td><!--each文の中で足したもの-->
+        </tr>
+        <tr>
+          <th>送料</th><td width="100" align="right"><%= @order.shipping_cost %>円</td>
+        </tr>
+        <tr>
+          <th>請求合計金額</td><td width="100" align="right"><b><%= @sum + @order.shipping_cost %>円</b></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
