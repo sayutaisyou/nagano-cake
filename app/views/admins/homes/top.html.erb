@@ -1,6 +1,14 @@
-<h3>管理者画面</h3>
-
-<div class="">
-    本日の注文件数 <%= link_to @today_orders, admins_orders_path %> 件
+<div class="container">
+    <div class="row">
+        <div class="mb-5 offset-md-1">
+            <p class="admins-homes-title">管理者画面</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <h4 class=" today-orders">
+            本日の注文件数　　　　 <%= link_to @today_orders, admins_orders_path %> &nbsp;件
+        </h4>
+        <!--「&nbsp;」＝ 空白-->
+    </div>
 </div>
-

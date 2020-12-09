@@ -1,3 +1,41 @@
 // Place all the styles related to the admins/Items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.admins-items-title {
+    display: inline-block;
+    background-color: #C0C0C0;
+    padding: 0 20px;
+    text-align: center;
+    margin-left: 60px;
+}
+
+.items-form-area {
+    display: flex;
+}
+
+.text-area {
+    margin-left: 50px;
+}
+
+.text-area-btn {
+    margin-left: 70%;
+}
+
+
+// index
+
+
+.items-index-table {
+    width: 90%;
+    margin: 0 auto;
+}
+
+// new
+
+.image-box {
+    width: 200px;
+    hight: 200px;
+    background-color: gray;
+}
+

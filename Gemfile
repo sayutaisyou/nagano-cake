@@ -73,3 +73,4 @@ gem 'pry-byebug'
 
 gem 'bootstrap', '~> 4.5.3'
 gem 'jquery-rails'
+

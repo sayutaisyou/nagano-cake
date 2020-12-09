@@ -1,48 +1,86 @@
-<h3>商品新規登録</h3>
+<div class="container">
+  <div class="row">
+      <div class="mb-2 offset-md-1">
+         <p class="admins-items-title">商品新規登録</p>
+      </div>
+  </div>
 
 　　<!--下記コメントアウトは保険のコード-->
     <%#= form_with model: @item, url: admins_items_path, scope: :post, local: true do |f| %>　
     
-<%= form_with model: @item, url: admins_items_path, local: true do |f| %>
+    <%= form_with model: @item, url: admins_items_path, local: true do |f| %>
+    
+        <% if @item.errors.any? %>
+    		<div id="error_explanation">
+    			<h3><%= @item.errors.count %>error prohibited this obj from being saved:</h3>
+    			<ul>
+    				<% @item.errors.full_messages.each do |message| %>
+    				<li><%= message %></li>
+    				<% end %>
+    			</ul>
+    		</div>
+    	<% end %>
+    	
+    	<div class="items-form-area">
+    	    
+        	    <div class="image-area">
+                    <div class="">
+                        <div class="image-box">
+                            サンプル
+                        </div>
+                        <div>
+                            <%#= f.label :商品画像 %>
+                            <%= f.attachment_field :image %>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-area">
+                    <table>
+                        <tr class="">
+                            <div>
+                                <th><%= f.label :商品名, class: "" %></th>
+                                <td class=""><%= f.text_field :name %></td>
+                            </div>
+                        </tr>
+                        
+                        <tr>
+                            <div class="">
+                                <th><%= f.label :商品説明, class: "" %></th>
+                                <td class=""><%= f.text_area :introduction %></td>
+                            </div>
+                        </tr>
+                        
+                        <tr>
+                            <div class="">
+                                <th><%= f.label :ジャンル, class: "" %></th>
+                                <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択して下さい--" %></td>
+                            </div>
+                        </tr>
+                        
+                        <tr>
+                            <div class="">
+                                <th><%= f.label :税抜価格, class: "" %></th>
+                                <td><span><%= f.text_field :price %> 円 </span></td>
+                            </div>
+                        </tr>
+                            
+                        <tr>
+                            <div class="">
+                                <th><%= f.label :販売ステータス, class: "" %></th>
+                                <td><%= f.select :is_active, [["販売中", "販売中"], ["売切れ","売切れ"]], include_blank: "--選択して下さい--" %></td>
+                            </div>
+                        </tr>  
+                        
+                    </table>
+                </div>
+            </div>
+                            <div class="text-area-btn">
+                                <%= f.submit :新規登録, class: "btn btn-primary" %>
+                            </div>
 
-    <% if @item.errors.any? %>
-		<div id="error_explanation">
-			<h3><%= @item.errors.count %>error prohibited this obj from being saved:</h3>
-			<ul>
-				<% @item.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
-	
 
-    <div class="">
-        <%= f.label :商品画像 %>
-        <%= f.attachment_field :image %>
-    </div>
-    <div class="">
-        <%= f.label :商品名 %>
-        <%= f.text_field :name %>
-    </div>
-    <div class="">
-        <%= f.label :商品説明 %>
-        <%= f.text_area :introduction %>
-    </div>
-    <div class="">
-        <%= f.label :ジャンル %>
-        <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択して下さい--" %>
-    </div>
-    <div class="">
-        <%= f.label :税抜価格 %>
-        <%= f.text_field :price %>
-        <span>円</span>
-    </div>
-    <div class="">
-        <%= f.label :販売ステータス %>
-        <%= f.select :is_active, [["販売中", "販売中"], ["売切れ","売切れ"]], include_blank: "--選択して下さい--" %>
-    </div>
-    <div class="">
-        <%= f.submit :新規登録 %>
-    </div>
-<% end %>
+     
+    <% end %>
+
+</div>

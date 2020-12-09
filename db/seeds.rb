@@ -6,10 +6,3 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-3.times do |n|
-    CartItem.create!(
-      item_id: "#{n + 1}",
-      customer_id: 4,
-      amount: 2
-    )
-  end
