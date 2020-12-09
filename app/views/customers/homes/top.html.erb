@@ -42,7 +42,7 @@
                   <div class="m-3">
                     <%= attachment_image_tag item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "200x125" %><br>
                     <%= item.name %><br>
-                    ¥<%= item.price %>
+                    ¥<%= syouhizei(item.price)%>
                   </div>
                 <% end %>
               <% end %>

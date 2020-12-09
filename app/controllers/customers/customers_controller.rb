@@ -13,6 +13,8 @@ class Customers::CustomersController < ApplicationController
 
   def edit
     @customer = Customer.find(params[:id])
+    @customer.postal_code.tr!('０-９', '0-9')
+    @customer.telephone_number.tr!('０-９', '0-9')
   end
 
   def update
