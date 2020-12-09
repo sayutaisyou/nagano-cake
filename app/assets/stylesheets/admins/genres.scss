@@ -1,3 +1,24 @@
 // Place all the styles related to the admins/genres controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.genre-page-title{
+  display: inline-block;
+  background-color: #C0C0C0;
+  font-size: 30px;
+  margin-left: 120px;
+  padding: 0 20px;
+}
+
+.genre-form-group {
+  margin-top: 50px;
+  margin-left: 30px;
+}
+.genre-table-group {
+  margin-top: 50px;
+  margin-left: 30px;
+  width: 40%;
+}
+.genre-btn {
+  margin-left: 15px;
+}
+
