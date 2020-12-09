@@ -22,9 +22,9 @@
                                 <%= attachment_image_tag(cart_item.item, :image, :fill, 80, 50, fallback: "no-image-mini.jpg") %>
                                 <%= cart_item.item.name %>
                             </td>
-                            <td class="align-middle"><%= cart_item.item.price %></td>
+                            <td class="align-middle"><%= cart_item.item.price.to_s(:delimited) %></td>
                             <td class="align-middle"><%= cart_item.amount %></td>
-                            <td class="align-middle"><%= cart_item.item.price * cart_item.amount %></td>
+                            <td class="align-middle"><%= (cart_item.item.price * cart_item.amount).to_s(:delimited) %></td>
                         </tr>
                     <% end %>
                 </tbody>
@@ -37,17 +37,17 @@
                         <tr>
                             <td class="table-active">送料</td>
                             <td>
-                                <%= @order.shipping_cost %>
+                                <%= @order.shipping_cost.to_s(:delimited) %>
                                 <%= f.hidden_field :shipping_cost, :value => @order.shipping_cost %>
                             </td>
                         </tr>
                         <tr>
                             <td class="table-active">商品合計</td>
-                            <td><%= @sum.round %></td>
+                            <td><%= @sum.round.to_s(:delimited) %></td>
                         </tr>
                         <tr>
                             <td class="table-active">請求金額</td>
-                            <td><%= @order.total_payment %>
+                            <td><%= @order.total_payment.to_s(:delimited) %>
                                 <%= f.hidden_field :total_payment, :value => @order.total_payment %>
                             </td>
                         </tr>

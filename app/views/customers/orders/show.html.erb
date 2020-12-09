@@ -39,15 +39,15 @@
                 <tbody>
                     <tr>
                         <td class="table-active">商品合計</td>
-                        <td><%= @order.total_payment.round - @order.shipping_cost %></td>
+                        <td><%= (@order.total_payment.round - @order.shipping_cost).to_s(:delimited) %></td>
                     </tr>
                     <tr>
                         <td class="table-active">配送料</td>
-                        <td><%= @order.shipping_cost %></td>
+                        <td><%= @order.shipping_cost.to_s(:delimited) %></td>
                     </tr>
                     <tr>
                         <td class="table-active"><b>ご請求額</b></td>
-                        <td><%= @order.total_payment.round %></td>
+                        <td><%= @order.total_payment.round.to_s(:delimited) %></td>
                     </tr>
                 </tbody>
             </table>
@@ -74,9 +74,9 @@
                 <% @order_details.each do |order_detail| %>
                     <tr>
                         <td><%= order_detail.item.name %></td>
-                        <td><%= order_detail.price %></td>
+                        <td><%= order_detail.price.to_s(:delimited) %></td>
                         <td><%= order_detail.amount %></td>
-                        <td><%= order_detail.price.round * order_detail.amount %></td>
+                        <td><%= (order_detail.price.round * order_detail.amount).to_s(:delimited) %></td>
                     </tr>
                 <% end %>
             </tbody>

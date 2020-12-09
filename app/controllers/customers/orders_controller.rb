@@ -40,6 +40,7 @@ class Customers::OrdersController < ApplicationController
     elsif to_address == "2"
       # 新規の配送先を登録する
       @address = current_customer.addresses.new(address_params)
+      @address.postal_code.tr!('０-９', '0-9')
       @address.save
       # 作成した新規配送先を基に、@orderのカラムを埋める
       @order.postal_code = @address.postal_code
