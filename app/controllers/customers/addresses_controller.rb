@@ -1,12 +1,6 @@
 class Customers::AddressesController < ApplicationController
   before_action :authenticate_customer!
-  before_action :hoge, if: proc { current_customer.is_deleted == true }
-
-  def hoge
-    sign_out
-    redirect_to new_customer_registration_path
-  end
-
+  
   def index
     @address = Address.new
     @address.customer_id = current_customer.id
