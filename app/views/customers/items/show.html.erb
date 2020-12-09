@@ -19,8 +19,7 @@
            <p class="ml-3">(税込)</p>
          </div>
 
-
-        　<%= form_with model: @cart_item, url: customers_cart_items_path, method: :get,  local: true do |f| %>
+        　<%= form_with model: @cart_item, url: customers_cart_items_path, local: true do |f| %>
             <!--hidden_fieldの安全性に関して未検討("hiddenは利用者からの書き換えはできますが、それ以外からの書き換えに対しては堅牢"と記述された記事あり。)-->
             <%= f.hidden_field :item_id, :value => @item.id %>
             <% if customer_signed_in? %>

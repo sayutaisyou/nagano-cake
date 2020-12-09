@@ -47,6 +47,6 @@ class Customers::CartItemsController < ApplicationController
   
   protected
   def cart_item_params
-    params.require(:cart_item).permit(:amount)
+    params.require(:cart_item).permit(:item_id, :customer_id, :amount)
   end
 end
