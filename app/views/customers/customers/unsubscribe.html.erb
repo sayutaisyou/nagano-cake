@@ -12,8 +12,8 @@
       <button type="button" class="btn btn-primary">退会しない</button>
     <% end %>
 
-    <%= link_to customers_customers_withdraw_path do %>
-      <button type="button" class="btn btn-danger ml-3", method: :patch>退会する</button>
+    <%= link_to customers_customers_withdraw_path, method: :patch do %>
+      <button type="button", method: :patch, class="btn btn-danger ml-3">退会する</button>
     <% end %>
 
   </div>
