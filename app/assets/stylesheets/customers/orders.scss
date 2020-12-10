@@ -7,10 +7,6 @@
     padding: 0;
 }
 
-.container {
-    margin: 0 auto;
-}
-
 .title {
     margin: 0 50px 20px 20px;
 }
@@ -24,12 +20,12 @@
     margin: 30px auto;
 }
 
-.input-left-20 {
-    margin-left: 20px ;
-}
-
 .input-left-30 {
     margin-left: 30px ;
+}
+
+.input-left-40 {
+    margin-left: 40px ;
 }
 
 .input-left-20-pad {
@@ -38,4 +34,8 @@
 
 .float-right {
     margin-right: 0px;
+}
+
+.bg-origin {
+  background-color: #e3e3e3;
 }
