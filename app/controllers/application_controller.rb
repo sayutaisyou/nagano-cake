@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-
   before_action :configure_permitted_parameters, if: :devise_controller?
+
 
   def after_sign_in_path_for(resource)
     # 下記の意味：遷移元で与えたパラメータを使って条件分岐
@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
       # 下記の意味：マイページから遷移してきたときはログアウトさせてからパスワード再設定ページに飛ばす
       sign_out
       new_customer_password_path
+    elsif current_customer.is_deleted == true
+      sign_out
+      root_path
     elsif customer_signed_in?
       root_path
     else

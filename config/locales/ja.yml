@@ -3,29 +3,3 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
 
-
-ja:
-  activerecord:
-    attributes:
-      customer:
-        last_name: "名前(姓)"
-        first_name: "名前(名)"
-        password: "パスワード(8文字以上)"
-        last_name_kana: "フリガナ(セイ)"
-        first_name_kana: "フリガナ(メイ)"
-        email: "メールアドレス"
-        encrypted_password: "パスワード(確認用)"
-        postal_code: "郵便番号(ハイフンなし)"
-        address: "住所"
-        telephone_number: "電話番号(ハイフンなし)"
-
-
-
-
-
-
-
-
-
-
-
