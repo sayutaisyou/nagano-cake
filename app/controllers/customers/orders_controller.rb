@@ -17,7 +17,7 @@ class Customers::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.shipping_cost = 800
     # CartItemからカート商品を取得
-    @cart_items = current_customer.cart_items.all
+    @cart_items = current_customer.cart_items
     # ciの税込価格を計算、ciの合計金額を計算
     @sum = 0
     @cart_items.each do |ci|
@@ -68,7 +68,7 @@ class Customers::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     # CartItemからカート商品を取得
-    cart_items = current_customer.cart_items.all
+    cart_items = current_customer.cart_items
     if @order.save
       # カート商品から注文商品を作成、orderの合計金額を計算
       sum = 0

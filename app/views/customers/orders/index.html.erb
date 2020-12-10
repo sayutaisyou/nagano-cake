@@ -20,7 +20,7 @@
                 <% @orders.each do |order| %>
                     <tr>
                         <td class="align-middle"><%= order.created_at.strftime('%Y/%m/%d') %></td>
-                        <td class="align-middle"><%= order.postal_code %><br>
+                        <td class="align-middle">〒<%= order.postal_code %><br>
                             <%= order.address %><br>
                             <%= order.name %>
                         </td>

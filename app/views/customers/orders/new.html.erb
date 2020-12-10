@@ -34,7 +34,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12 input-left-40 table-sm">
-            <span><%= current_customer.postal_code.tr('０-９', '0-9') %> <%= current_customer.address %></span><br>
+            <span><%= '〒' + current_customer.postal_code.tr('０-９', '0-9') %> <%= current_customer.address %></span><br>
             <span><%= current_customer.full_name %></br>
         </div>
     </div>

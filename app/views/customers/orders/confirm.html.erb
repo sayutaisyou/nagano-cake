@@ -71,7 +71,7 @@
                     <b>お届け先</b>
                 </td>
                 <td class="input-left-20-pad">
-                    <%= @order.postal_code.tr('０-９', '0-9') %>
+                    <%= '〒' + @order.postal_code.tr('０-９', '0-9') %>
                     <%= f.hidden_field :postal_code, :value => @order.postal_code.tr('０-９', '0-9') %>
                     <%= @order.address %>
                     <%= f.hidden_field :address, :value => @order.address %>
