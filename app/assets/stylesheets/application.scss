@@ -13,11 +13,7 @@
  *= require_tree .
  *= require_self
  */
-
- @import "bootstrap";
-
-
-// admis-session-form
+@import "bootstrap";
 
 .admins-session-title {
     display: inline-block;
@@ -28,7 +24,7 @@
 }
 
 .admins-session-form {
-    margin-left: 50%;
+    margin-left: 35%;
 }
 
 .admins-session-form-title {
@@ -87,4 +83,3 @@ a:active {
   text-decoration: underline;
   color: #204dd4;
 }
-

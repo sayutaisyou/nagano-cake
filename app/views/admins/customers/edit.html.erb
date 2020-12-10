@@ -1,5 +1,5 @@
-<div class="customer-edit-page-title">
-  <h3><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h3>
+<div class="row">
+  <h3 class="customer-edit-page-title"><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h3>
 </div>
 
 <%= form_with model: @customer, url: admins_customer_path(@customer), local:true do |f| %>

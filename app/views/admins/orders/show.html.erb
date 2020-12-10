@@ -1,5 +1,5 @@
-<div class="order-page-title">
-  <h3>注文履歴詳細</h3>
+<div class="row">
+  <h3 class="order-page-title">注文履歴詳細</h3>
 </div>
 
 <div class="row order-data ml-5 mb-5">
@@ -9,14 +9,14 @@
         <th>購入者</th>
         <td>
           <%= link_to admins_customer_path(@order) do %>
-          <%= @order.customer.last_name + @order.customer.first_name %>
+          <%= @order.customer.last_name + " " + @order.customer.first_name %>
           <% end %>
         </td>
       </tr>
 
       <tr>
         <th>配送先</th>
-        <td>〒<%= @order.postal_code + " " + @order.address %><br/><%= @order.name %></td>
+        <td>〒<%= @order.postal_code + " " + @order.address %><br/><%= @order.customer.full_name %></td>
       </tr>
 
       <tr>
@@ -25,7 +25,7 @@
       </tr>
 
       <tr>
-        <th>注文ステータス</th>
+        <th width="150">注文ステータス</th>
         <td>
           <%= form_with model: @order, url: admins_order_path(@order), local: true do |f| %>
             <%= f.select :status, [["入金待ち", "入金待ち" ], ["入金確認", "入金確認" ], ["製作中", "製作中" ], ["発送準備中", "発送準備中" ], ["発送済み", "発送済み" ]] %>
@@ -46,7 +46,7 @@
           <th width="120">単価(税込)</th>
           <th width="80">数量</th>
           <th width="120">小計</th>
-          <th>制作ステータス</th>
+          <th>製作ステータス</th>
         </tr>
       </thead>
       <tbody>
@@ -54,9 +54,9 @@
         <% @order_details.each do |order_detail| %>
           <tr>
            <td><%= order_detail.item.name %></td>
-           <td><%= (order_detail.item.price * 1.1).floor %></td>
+           <td><%= (order_detail.item.price * 1.1).floor.to_s(:delimited) %></td>
            <td><%= order_detail.amount %></td>
-           <td><%= (order_detail.item.price * order_detail.amount * 1.1).floor %></td><!--単価　＊　個数　＊　税率-->
+           <td><%= (order_detail.item.price * order_detail.amount * 1.1).floor.to_s(:delimited) %></td><!--単価　＊　個数　＊　税率-->
            <% @sum += (order_detail.item.price * order_detail.amount * 1.1).floor %>
            <td><!-- order_id: @order.id-->
              <%= form_with model: order_detail, url: admins_order_detail_path(order_detail), method: :patch, local: true do |f| %>
@@ -75,13 +75,13 @@
     <table>
       <tbody>
         <tr>
-          <th>商品合計</th><td width="100" align="right"><%= @sum %>円</td><!--each文の中で足したもの-->
+          <th>商品合計</th><td width="100" align="right"><%= @sum.to_s(:delimited) %>円</td><!--each文の中で足したもの-->
         </tr>
         <tr>
-          <th>送料</th><td width="100" align="right"><%= @order.shipping_cost %>円</td>
+          <th>送料</th><td width="100" align="right"><%= @order.shipping_cost.to_s(:delimited) %>円</td>
         </tr>
         <tr>
-          <th>請求合計金額</td><td width="100" align="right"><b><%= @sum + @order.shipping_cost %>円</b></td>
+          <th>請求合計金額</td><td width="100" align="right"><b><%= (@sum + @order.shipping_cost).to_s(:delimited) %>円</b></td>
         </tr>
       </tbody>
     </table>

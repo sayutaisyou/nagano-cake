@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
       <div class="pb-1 offset-md-4">
-        <p class="admins-session-title">管理者ログイン</p>
+        <h3 class="admins-session-title">管理者ログイン</h3>
       </div>
   </div>
-  
+
   <div class="admins-session-form">
     <table>
       <tr>
@@ -14,7 +14,7 @@
             <td><%= f.email_field :email, autofocus: true, autocomplete: "email", size: 30, class: "admins-session-form-title" %></td>
           </div>
       </tr>
-  
+
       <tr>
           <div class="admins-session-form-password">
             <th><%= f.label :パスワード, class: "admins-session-form-title" %></th>
@@ -22,9 +22,9 @@
           </div>
       </tr>
     </table>
-    
-    
-    
+
+
+
         <div class="admins-session-form-btn">
           <%= f.submit "ログイン", class: "btn btn-primary" %>
         </div>
