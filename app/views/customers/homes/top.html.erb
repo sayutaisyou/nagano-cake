@@ -5,8 +5,16 @@
 
   <div class="col-lg-10 px-4">
 
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+
     <!--model(Bootstrap)-->
     <!--< % if :devise_controller? %>-->
+    <% unless customer_signed_in? %>
       <div class="modal in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-left: 0px;">
         <div class="modal-dialog center-modal" role="document">
           <div class="modal-content">
@@ -24,6 +32,7 @@
           $('#myModal').modal('show');
       });
       </script>
+    <% end %>
     <!--< % end %>-->
 
 
@@ -42,7 +51,7 @@
                   <div class="m-3">
                     <%= attachment_image_tag item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "200x125" %><br>
                     <%= item.name %><br>
-                    ¥<%= item.price %>
+                    ¥<%= syouhizei(item.price)%>
                   </div>
                 <% end %>
               <% end %>

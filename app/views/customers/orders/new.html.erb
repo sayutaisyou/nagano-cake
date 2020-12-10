@@ -1,16 +1,16 @@
 <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 title">
-        <h1>注文情報入力</h1>
+    <div class="col-lg-10 col-xs-offset-1 title">
+        <span class="bg-origin">注文情報入力</h1>
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-12 input-left-20">
+    <div class="col-lg-12">
         <b>支払方法</b>
     </div>
 </div>
 <%= form_with model:@order, url: customers_orders_confirm_path, local: true do |f| %>
     <div class="row">
-        <div class="col-xs-12 input-left-30">
+        <div class="col-lg-12 input-left-30">
             
                 <%= f.radio_button :payment_method, :クレジットカード %>
                 <%= f.label :クレジットカード %>
@@ -19,76 +19,75 @@
                 <%= f.label :銀行振込 %>
         </div>
     </div>
-    <div class="row title">
-        <div class="col-xs-12 input-left-20">
+    <div class="row mt-4">
+        <div class="col-lg-12">
             <b>お届け先</b>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 input-left-30">
+        <div class="col-lg-12 input-left-30">
                 <!--ご自身の住所-->
                 <!--radio_button_tagを使うとカラム以外の値を定義できる-->
-                <%= radio_button_tag(:to_address, 0) %>
+                <%= radio_button_tag(:to_address, 0, :checked=>'checked') %>
                 <%= f.label :ご自身の住所 %>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 input-left-30">
-            <table>
-                <tr>
-                    <td>
-                        <%= current_customer.postal_code %>
-                        <%= current_customer.address %>
-                    </td>
-                <tr>
-                </tr>
-                    <td><%= current_customer.full_name %></td>
-                </tr>
-            </table>
+        <div class="col-lg-12 input-left-40 table-sm">
+            <span><%= '〒' + current_customer.postal_code.tr('０-９', '0-9') %> <%= current_customer.address %></span><br>
+            <span><%= current_customer.full_name %></br>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12 input-left-30">
-                <!--登録済み住所から選択-->
-                <%= radio_button_tag(:to_address, 1) %>
-                <%= f.label :登録済み住所から選択 %>
+    <!--@addressesが空の時は非表示-->
+    <% if @addresses.count > 0 %>
+        <div class="row mt-3">
+            <div class="col-lg-12 input-left-30">
+                    <!--登録済み住所から選択-->
+                    <%= radio_button_tag(:to_address, 1) %>
+                    <%= f.label :登録済み住所から選択 %>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 input-left-30">
-                <!--コントローラーで@addressesを定義すると[undefined method `map' for nil:NilClass]が出るため、下記の記載とする-->
-                <!--< %= f.collection_select :name, current_customer.addresses.all, :id, :post_address_name %>だと、orderモデルにあるカラムじゃないので不具合-->
-                <%= collection_select(:name, :id, current_customer.addresses, :id, :post_address_name,{}, {class: "form-control"}) %>
+        <div class="row">
+            <div class="col-lg-6 input-left-40">
+                    <!--コントローラーで@addressesを定義すると[undefined method `map' for nil:NilClass]が出るため、下記の記載とする-->
+                    <!--< %= f.collection_select :name, current_customer.addresses.all, :id, :post_address_name %>だと、orderモデルにあるカラムじゃないので不具合-->
+                    <%= collection_select(:name, :id, current_customer.addresses, :id, :post_address_name,{}, {class: "form-control"}) %>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 input-left-20">
+    <% end %>
+    <div class="row mt-3">
+        <div class="col-lg-12 input-left-30">
                 <!--新しいお届け先-->
                 <%= radio_button_tag(:to_address, 2) %>
                 <%= label_tag(:address, "新しいお届け先") %>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 input-left-30">
-            <table>
-                <tr>
-                    <td><%= label_tag(:address, "郵便番号（ハイフンなし）") %></td>
-                    <td><%= text_field_tag 'address[postal_code]' %></td>
-                </tr>
-                <tr>
-                    <td><%= label_tag(:address, "住所") %></td>
-                    <td><%= text_field_tag 'address[address]' %></td>
-                </tr>
-                <tr>
-                    <td><%= label_tag(:address, "宛名") %></td>
-                    <td><%= text_field_tag 'address[name]' %></td>
-                </tr>
-            </table>
+        <div class="col-lg-2 input-left-40">
+            <%= label_tag(:address, "郵便番号（ハイフンなし）") %>
+        </div>
+        <div class="col-lg-4 input-left-40">
+            <%= text_field_tag 'address[postal_code]', '', placeholder: '0000000' %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2 input-left-40">
+            <%= label_tag(:address, "住所") %>
+        </div>
+        <div class="col-lg-8 input-left-40">
+            <%= text_field_tag 'address[address]', '', size: 80, placeholder: '東京都東京都千代田区千代田１−１' %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2 input-left-40">
+            <%= label_tag(:address, "宛名") %>
+        </div>
+        <div class="col-lg-4 input-left-40">
+            <%= text_field_tag 'address[name]', '', placeholder: '山田太郎' %>
         </div>
     </div>
     <div class="row justify-content-center">
                 <!--submitボタン-->
                 <%= f.submit "確認画面へ進む", :class=>"btn btn-primary" %>
-            
     </div>
 <% end %>

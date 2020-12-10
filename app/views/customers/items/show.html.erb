@@ -18,9 +18,7 @@
            <h3><b>¥  <%= syouhizei(@item.price)%></b></h3>
            <p class="ml-3">(税込)</p>
          </div>
-
-
-        　<%= form_with model: @cart_item, url: customers_cart_items_path, method: :get,  local: true do |f| %>
+        　<%= form_with model: @cart_item, url: customers_cart_items_path, local: true do |f| %>
             <!--hidden_fieldの安全性に関して未検討("hiddenは利用者からの書き換えはできますが、それ以外からの書き換えに対しては堅牢"と記述された記事あり。)-->
             <%= f.hidden_field :item_id, :value => @item.id %>
             <% if customer_signed_in? %>
@@ -32,21 +30,18 @@
                 <!--  ドロップダウンボタン-->
                 <!--</button>-->
                 <!--<div class="dropdown-menu">-->
-                  <%= f.select :amount, {"1": 1, "2": 2, "3": 3}, include_blank: "個数選択", class: "dropdown-item" %>
+                  <%= f.select :amount, {"1": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10}, include_blank: "個数選択", class: "dropdown-item" %>
                 <!--</div>-->
               <!--</div>-->
 
               <div class="col-lg-3">
-                <%= f.submit "カートに入れる", class: "btn btn-primary btn-sm" %>
+                <%= f.submit "カートに入れる", class: "btn btn-primary" %>
               </div>
             </div>
           <% end %>
 
 
     </div>
-
-
-
   </div>
 </div>
 

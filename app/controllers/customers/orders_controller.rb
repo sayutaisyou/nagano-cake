@@ -9,6 +9,7 @@ class Customers::OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @addresses = current_customer.addresses
   end
   
   def confirm
@@ -16,17 +17,17 @@ class Customers::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.shipping_cost = 800
     # CartItemからカート商品を取得
-    @cart_items = current_customer.cart_items.all
+    @cart_items = current_customer.cart_items
     # ciの税込価格を計算、ciの合計金額を計算
     @sum = 0
     @cart_items.each do |ci|
-      ci_tax_price = ci.item.price * 1.1 * ci.amount
+      ci_tax_price = (ci.item.price * 1.1 * ci.amount).floor
       @sum += ci_tax_price
     end
     # orderの請求金額を計算
     @order.total_payment = @sum + @order.shipping_cost
     # orderのユーザー入力部分登録（@order.paymentはストロングパラメータorder_paramsで受け取り済）
-    if @order.payment_method != ( 'クレジットカード' || '銀行振込' )
+    unless (@order.payment_method == 'クレジットカード') || (@order.payment_method == '銀行振込' )
       render :new
       return
     end
@@ -55,7 +56,6 @@ class Customers::OrdersController < ApplicationController
       render :confirm
     else
       render :new
-      return
     end
     # POSTメソッドなのでrenderしてビューを取得する必要がある
     # fields_for 複数データを一度に保存する時に使用可能
@@ -68,14 +68,14 @@ class Customers::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     # CartItemからカート商品を取得
-    cart_items = current_customer.cart_items.all
+    cart_items = current_customer.cart_items
     if @order.save
       # カート商品から注文商品を作成、orderの合計金額を計算
       sum = 0
       cart_items.each do |ci|
         order_detail = OrderDetail.new(order_id: @order.id)
         order_detail.item_id = ci.item_id
-        order_detail.price = ci.item.price * 1.1
+        order_detail.price = (ci.item.price * 1.1).floor
         order_detail.amount = ci.amount
         order_detail.save
         # ここでカートitemを順次削除してもよい
