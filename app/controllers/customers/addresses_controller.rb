@@ -10,7 +10,7 @@ class Customers::AddressesController < ApplicationController
   def index
     @address = Address.new
     @address.customer_id = current_customer.id
-    @addresses = current_customer.addresses.all
+    @addresses = current_customer.addresses
   end
 
   def edit
@@ -22,7 +22,7 @@ class Customers::AddressesController < ApplicationController
     @address = current_customer.addresses.new(address_params)
     # 全角数値=>半角数値に変換
     @address.postal_code.tr!('０-９', '0-9')
-    @addresses = current_customer.addresses.all
+    @addresses = current_customer.addresses
     if @address.save
       redirect_to customers_addresses_path, notice: "配送先が登録されました"
     else

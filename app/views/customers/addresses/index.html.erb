@@ -53,7 +53,7 @@
                 <% @addresses.each do |address| %>
                     <tbody>
                         <tr>
-                            <td class="align-middle"><%= address.postal_code.tr('０-９', '0-9') %></td>
+                            <td class="align-middle">〒<%= address.postal_code.tr('０-９', '0-9') %></td>
                             <td class="align-middle"><%= address.address %></td>
                             <td class="align-middle"><%= address.name %></td>
                             <td class="text-center">

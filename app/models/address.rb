@@ -8,6 +8,6 @@ class Address < ApplicationRecord
  
 #  order/newで使う値を定義
    def post_address_name
-    self.postal_code.tr('０-９', '0-9') + ' ' + self.address + ' '+ self.name
+    '〒' + self.postal_code.tr('０-９', '0-9') + ' ' + self.address + ' '+ self.name
    end
 end

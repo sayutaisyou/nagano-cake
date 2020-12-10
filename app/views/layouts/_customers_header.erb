@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <nav class="bg-black">
       <%= link_to root_path do %>
-        <%= image_tag('logo.jpg', class: 'navbar navbar-left bg-left') %>
+        <%= image_tag('logo.jpg', class: 'navbar navbar-left bg-left mt-5') %>
       <% end %>
     </nav>
     <nav>
@@ -13,7 +13,7 @@
           <li><%= link_to '新規登録', new_customer_registration_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
           <li><%= link_to 'ログイン', new_customer_session_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
         <% else %>
-          <p class="navbar-text">ようこそ、<%= current_customer.full_name %> さん。</p>
+          <p class="navbar-text mt-4 mr-5">ようこそ、<%= current_customer.full_name %> さん。</p>
           <li><%= link_to 'マイページ', customers_my_page_path(current_customer), class: 'btn btn-outline-secondary btn-lg' %></li>
           <li><%= link_to '商品一覧', customers_items_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
           <li><%= link_to 'カート', customers_cart_items_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>

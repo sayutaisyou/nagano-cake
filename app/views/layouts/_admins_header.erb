@@ -1,6 +1,8 @@
 <div class="container-fluid">
     <div class="row">
-        <p class="nav navbar-left">LOGO</p>
+        <%= link_to root_path do %>
+            <%= image_tag('logo.jpg', class: 'navbar navbar-left bg-left mt-5') %>
+        <% end %>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <ul class="nav navbar-nav navbar-right">
                     <% if admin_signed_in? %>
