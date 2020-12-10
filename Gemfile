@@ -74,3 +74,7 @@ gem 'pry-byebug'
 gem 'bootstrap', '~> 4.5.3'
 gem 'jquery-rails'
 
+gem 'rails-i18n'
+
+gem 'devise-i18n'
+gem 'devise-i18n-views'

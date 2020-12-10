@@ -1,19 +1,19 @@
-<div class="container">
+<!--<div class="container">-->
   <div class="row">
-      <div class="mb-2 offset-md-1">
-         <p class="admins-items-title">商品一覧</p>
-      </div>
+    <div class="ml-5">
+      <h3 class="admins-items-title">商品一覧</h3>
+    </div>
   </div>
-  
+   <%= link_to new_admins_item_path do %>
+      <button type="button" class="btn btn-light rounded-circle p-0" style="width:3rem;height:3rem;">
+        +
+      </button>
+    <% end %>
+
   <div class="col-12">
-      <%= link_to new_admins_item_path do %>
-          <button type="button" class="btn btn-light rounded-circle p-0 float-right mb-2" style="width:3rem;height:3rem;">
-            +
-          </button>
-      <% end %>
-        
-      <div class="mx-auto">  
-        <table class="table items-index-table">
+
+      <div class="items-index-table mx-auto">
+        <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
                     <th>商品ID</th>
@@ -28,7 +28,7 @@
                 <tr>
                     <td><%= item.id %></td>
                     <td><%= link_to item.name, admins_item_path(item) %></td>
-                    <td><%= item.price %></td>
+                    <td><%= item.price.to_s(:delimited) %></td>
                     <td><%= item.genre.name %></td>
                     <td><%= item.is_active %></td>
                 </tr>
@@ -36,8 +36,8 @@
             </tbody>
         </table>
       </div>
-      <div class="offset-md-5">    
+      <div class="offset-md-5">
         <%= paginate @items, class: "" %>
       </div>
    </div>
-</div>
+<!--</div>-->

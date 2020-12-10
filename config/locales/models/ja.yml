@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+      attributes:
+        item:
+          genre: ジャンル
+          image: 商品画像
+          name: 商品名
+          introduction: 商品説明
+          price: 税抜価格
+          is_active: 販売ステータス
+        customer:
+          email: メールアドレス
+          last_name: 氏名(苗字)
+          first_name: 氏名(名前)
+          last_name_kana: フリガナ(苗字)
+          first_name_kana: フリガナ(名前)
+          postal_code: 郵便番号
+          address: 住所
+          telephone_number: 電話番号
+          password: パスワード
+          encrypted_password: パスワード
