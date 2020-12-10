@@ -14,7 +14,7 @@ class Customers::CartItemsController < ApplicationController
   def update
     @cart_item = CartItem.find(params[:id])
     if @cart_item.update(cart_item_params)
-      redirect_to customers_cart_items_path, notice: "You have modified amount successfully."
+      redirect_to customers_cart_items_path, notice: "個数が変更されました"
     else
       render :index
     end
@@ -38,6 +38,7 @@ class Customers::CartItemsController < ApplicationController
 
   def create
     @cart_item = CartItem.new(cart_item_params)
+    @cart_items = current_customer.cart_items.all
     if @cart_item.save
       redirect_to customers_cart_items_path
     else

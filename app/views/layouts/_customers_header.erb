@@ -11,7 +11,7 @@
           <li><%= link_to '新規登録', new_customer_registration_path, class: 'btn btn-default' %></li>
           <li><%= link_to 'ログイン', new_customer_session_path, class: 'btn btn-default' %></li>
         <% else %>
-          <p class="navbar-text">ようこそ、<%= current_customer.last_name %> さん。</p>
+          <p class="navbar-text">ようこそ、<%= current_customer.full_name %> さん。</p>
           <li><%= link_to 'マイページ', customers_my_page_path(current_customer), class: 'btn btn-default' %></li>
           <li><%= link_to '商品一覧', customers_items_path, class: 'btn btn-default' %></li>
           <li><%= link_to 'カート', customers_cart_items_path, class: 'btn btn-default' %></li>

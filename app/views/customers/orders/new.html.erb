@@ -28,13 +28,13 @@
         <div class="col-lg-12 input-left-30">
                 <!--ご自身の住所-->
                 <!--radio_button_tagを使うとカラム以外の値を定義できる-->
-                <%= radio_button_tag(:to_address, 0) %>
+                <%= radio_button_tag(:to_address, 0, :checked=>'checked') %>
                 <%= f.label :ご自身の住所 %>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12 input-left-40 table-sm">
-            <span><%= current_customer.postal_code %> <%= current_customer.address %></span><br>
+            <span><%= current_customer.postal_code.tr('０-９', '0-9') %> <%= current_customer.address %></span><br>
             <span><%= current_customer.full_name %></br>
         </div>
     </div>
@@ -64,7 +64,7 @@
             <%= label_tag(:address, "郵便番号（ハイフンなし）") %>
         </div>
         <div class="col-lg-4 input-left-40">
-            <%= text_field_tag 'address[postal_code]' %>
+            <%= text_field_tag 'address[postal_code]', '', placeholder: '0000000' %>
         </div>
     </div>
     <div class="row">
@@ -72,7 +72,7 @@
             <%= label_tag(:address, "住所") %>
         </div>
         <div class="col-lg-8 input-left-40">
-            <%= text_field_tag 'address[address]' %>
+            <%= text_field_tag 'address[address]', '', size: 80, placeholder: '東京都東京都千代田区千代田１−１' %>
         </div>
     </div>
     <div class="row">
@@ -80,7 +80,7 @@
             <%= label_tag(:address, "宛名") %>
         </div>
         <div class="col-lg-4 input-left-40">
-            <%= text_field_tag 'address[name]' %>
+            <%= text_field_tag 'address[name]', '', placeholder: '山田太郎' %>
         </div>
     </div>
     <div class="row justify-content-center">

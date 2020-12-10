@@ -18,7 +18,7 @@ class Customers::AddressesController < ApplicationController
     @address.postal_code.tr!('０-９', '0-9')
     @addresses = current_customer.addresses.all
     if @address.save
-      redirect_to customers_addresses_path, notice: "You have created address successfully."
+      redirect_to customers_addresses_path, notice: "配送先が登録されました"
     else
       render :index
     end
@@ -26,8 +26,9 @@ class Customers::AddressesController < ApplicationController
 
   def update
     @address = Address.find(params[:id])
+    # @address.postal_code.tr!('０-９', '0-9')がうまく機能しないため、各ビューで表示を工夫する。
     if @address.update(address_params)
-      redirect_to customers_addresses_path, notice: "You have modified address successfully."
+      redirect_to customers_addresses_path, notice: "配送先が更新されました"
     else
       render :edit
     end
