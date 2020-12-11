@@ -4,19 +4,23 @@
       <h3 class="admins-items-title">商品一覧</h3>
     </div>
   </div>
+  
+  <div class="rounded-circle-box", style="width:3rem;height:3rem;">
    <%= link_to new_admins_item_path do %>
       <button type="button" class="btn btn-light rounded-circle p-0" style="width:3rem;height:3rem;">
         +
       </button>
     <% end %>
-
-  <div class="col-12">
+  </div>
+  
+  <div class="col-12 ">
 
       <div class="items-index-table mx-auto">
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
                     <th>商品ID</th>
+                    <th>商品画像</th>
                     <th>商品名</th>
                     <th>税抜価格</th>
                     <th>ジャンル</th>
@@ -26,7 +30,8 @@
             <tbody>
                 <% @items.each do |item| %>
                 <tr>
-                    <td><%= item.id %></td>
+                    <td width=100><%= item.id %></td>
+                    <td width=100><%= attachment_image_tag item, :image, size: '50x50', fallback: 'no_image_square.jpg', size: '50x50' %></td>
                     <td><%= link_to item.name, admins_item_path(item) %></td>
                     <td><%= item.price.to_s(:delimited) %></td>
                     <td><%= item.genre.name %></td>
@@ -36,7 +41,7 @@
             </tbody>
         </table>
       </div>
-      <div class="offset-md-5">
+      <div class="offset-md-5 ">
         <%= paginate @items, class: "" %>
       </div>
    </div>

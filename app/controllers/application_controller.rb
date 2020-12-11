@@ -4,17 +4,17 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     # 下記の意味：遷移元で与えたパラメータを使って条件分岐
-    if params[:order_sort] === "0"
+    if params[:order_sort] == "0"
       # 下記の意味：マイページから遷移してきたときはログアウトさせてからパスワード再設定ページに飛ばす
       sign_out
       new_customer_password_path
+    elsif current_admin
+      admins_homes_top_path
     elsif current_customer.is_deleted == true
       sign_out
       root_path
     elsif customer_signed_in?
       root_path
-    else
-      admins_homes_top_path
     end
   end
 
