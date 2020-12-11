@@ -4,31 +4,32 @@
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/45c58c3b7f.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <header class="header">
-      <% if request.fullpath.include?("admin") %>
-        <%= render 'layouts/admins_header' %>
-      <% else%>
-        <%= render 'layouts/customers_header' %>
-      <% end %>
-    </header>
-    
-    <main class="main">
-      <div class ="container-fluid">
-        <%= yield %>
-      </div>
-    </main>
+    <div class="footerFixed">
+      <header class="header">
+        <% if request.fullpath.include?("admin") %>
+          <%= render 'layouts/admins_header' %>
+        <% else%>
+          <%= render 'layouts/customers_header' %>
+        <% end %>
+      </header>
 
-    <footer class="footer">
-      <div class ="container-fluid">
-        <p class="text-lg-right mt-5 mr-5">© nagano-cake</p>
-      </div>
-    </footer>
+      <main class="main">
+        <div class ="container-fluid">
+          <%= yield %>
+        </div>
+      </main>
+
+      <footer class="footer ">
+        <div class ="container-fluid">
+          <p class="text-center mb-0">© nagano-cake</p>
+        </div>
+      </footer>
+    </div>
   </body>
-
 </html>
