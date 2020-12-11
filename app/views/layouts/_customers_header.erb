@@ -1,25 +1,25 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container-fluid">
-    <nav class="bg-black">
-      <%= link_to root_path(order_sort: 1) do %>
-        <%= image_tag('logo.jpg', class: 'navbar navbar-left bg-left mt-5') %>
-      <% end %>
-    </nav>
-    <nav>
-      <ul class="navbar navbar-left bg-left">
-        <% unless customer_signed_in? %>
-          <li><%= link_to 'About', customers_homes_about_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
-          <li><%= link_to '商品一覧', customers_items_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
-          <li><%= link_to '新規登録', new_customer_registration_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
-          <li><%= link_to 'ログイン', new_customer_session_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
-        <% else %>
-          <p class="navbar-text mt-4 mr-5">ようこそ、<%= current_customer.full_name %> さん。</p>
-          <li><%= link_to 'マイページ', customers_my_page_path(current_customer), class: 'btn btn-outline-secondary btn-lg' %></li>
-          <li><%= link_to '商品一覧', customers_items_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
-          <li><%= link_to 'カート', customers_cart_items_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
-          <li><%= link_to "ログアウト",  destroy_customer_session_path, method: :delete, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
+<header class="navbar navbar-fixed-top navbar-inverse pt-0 pr-0 pl-0 pb-0 bg">
+  <div class="container-fluid pl-0 pr-0 bg-mask">
+      <nav class="bg-black">
+        <%= link_to root_path(order_sort: 1) do %>
+          <%= image_tag('logo.jpg', class: 'navbar navbar-left bg-left mt-4 mb-4') %>
         <% end %>
-      </ul>
-    </nav>
+      </nav>
+      <nav>
+        <ul class="navbar navbar-left bg-left">
+          <% unless customer_signed_in? %>
+            <li><%= link_to 'About', customers_homes_about_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
+            <li><%= link_to '商品一覧', customers_items_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
+            <li><%= link_to '新規登録', new_customer_registration_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
+            <li><%= link_to 'ログイン', new_customer_session_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
+          <% else %>
+            <p class="navbar-text mt-4 mr-5">ようこそ、<%= current_customer.full_name %> さん。</p>
+            <li><%= link_to 'マイページ', customers_my_page_path(current_customer), class: 'btn btn-outline-secondary btn-lg' %></li>
+            <li><%= link_to '商品一覧', customers_items_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
+            <li><%= link_to 'カート', customers_cart_items_path, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
+            <li><%= link_to "ログアウト",  destroy_customer_session_path, method: :delete, class: 'btn btn-outline-secondary btn-lg ml-1' %></li>
+          <% end %>
+        </ul>
+      </nav>
   </div>
 </header>

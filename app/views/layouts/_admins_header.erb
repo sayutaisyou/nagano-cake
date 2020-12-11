@@ -1,23 +1,25 @@
-<div class="container-fluid">
-    <div class="row">
-        <%= link_to root_path do %>
-            <%= image_tag('logo.jpg', class: 'navbar navbar-left bg-left mt-5') %>
-        <% end %>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <ul class="nav navbar-nav navbar-right">
-                    <% if admin_signed_in? %>
-                        <li><%= link_to '商品一覧', admins_items_path, class: 'btn btn-outline-dark btn-sm' %></li>
-                        <li><%= link_to '会員一覧', admins_customers_path, class: 'btn btn-outline-dark  btn-sm' %></li>
-                        <li><%= link_to '注文履歴一覧', admins_orders_path, class: 'btn btn-outline-dark  btn-sm' %></li>
-                        <li><%= link_to 'ジャンル一覧', admins_genres_path, class: 'btn btn-outline-dark  btn-sm' %></li>
-                        <li><%= link_to "ログアウト",  destroy_admin_session_path(), method: :delete, class: 'btn btn-outline-dark  btn-sm' %></li>
-                    <% else %>
-                        <li><%= link_to 'About', customers_homes_about_path, class: 'btn btn-default' %></li>
-                        <li><%= link_to '商品一覧', customers_items_path, class: 'btn btn-default' %></li>
-                        <li><%= link_to '新規登録', new_customer_registration_path, class: 'btn btn-default' %></li>
-                        <li><%= link_to 'ログイン', new_customer_session_path, class: 'btn btn-default' %></li>
-                    <% end %>
-                </ul>
-          </nav>
+<header class="navbar navbar-fixed-top navbar-inverse pt-0 pr-0 pl-0 pb-0 bg">
+    <div class="container-fluid pl-0 pr-0 bg-mask">
+        <nav class="bg-black">
+            <%= link_to root_path do %>
+                <%= image_tag('logo.jpg', class: 'navbar navbar-left bg-left mt-4 mb-4') %>
+            <% end %>
+        </nav>
+        <nav>
+            <ul class="navbar navbar-left bg-left">
+                <% if admin_signed_in? %>
+                    <li><%= link_to '商品一覧', admins_items_path, class: 'btn btn-outline-secondary btn-sm' %></li>
+                    <li><%= link_to '会員一覧', admins_customers_path, class: 'btn btn-outline-secondary ml-1 btn-sm' %></li>
+                    <li><%= link_to '注文履歴一覧', admins_orders_path, class: 'btn btn-outline-secondary ml-1 btn-sm' %></li>
+                    <li><%= link_to 'ジャンル一覧', admins_genres_path, class: 'btn btn-outline-secondary ml-1 btn-sm' %></li>
+                    <li><%= link_to "ログアウト",  destroy_admin_session_path(), method: :delete, class: 'btn btn-outline-dark  btn-sm' %></li>
+                <% else %>
+                    <li><%= link_to 'About', customers_homes_about_path, class: 'btn btn-outline-secondary' %></li>
+                    <li><%= link_to '商品一覧', customers_items_path, class: 'btn btn-outline-secondary ml-1' %></li>
+                    <li><%= link_to '新規登録', new_customer_registration_path, class: 'btn btn-outline-secondary ml-1' %></li>
+                    <li><%= link_to 'ログイン', new_customer_session_path, class: 'btn btn-outline-secondary ml-1' %></li>
+                <% end %>
+            </ul>
+        </nav>
     </div>
-</div>
+</header>
