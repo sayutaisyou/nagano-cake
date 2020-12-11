@@ -5,27 +5,20 @@
       </div>
   </div>
 
-  <div class="input-group">
-  	<input type="text" class="form-control" placeholder="Search">
-  	<span class="input-group-btn">
-  		<button type="button" class="btn btn-default"><i class="fas fa-search"></i></button>
-  	</span>
-  </div>
-
   <div class="admins-session-form">
     <table>
       <tr>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="admins-session-form-email">
             <th><%= f.label :メールアドレス, class: "admins-session-form-title" %></th>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", size: 30, class: "admins-session-form-title" %></td>
+            <td><%= f.email_field :email, :placeholder => "test@test.com", autofocus: true, autocomplete: "email", size: 30, class: "admins-session-form-title" %></td>
           </div>
       </tr>
 
       <tr>
           <div class="admins-session-form-password">
             <th><%= f.label :パスワード, class: "admins-session-form-title" %></th>
-            <td><%= f.password_field :password, autocomplete: "current-password", size: 30, class: "admins-session-form-title" %></td>
+            <td><%= f.password_field :password, :placeholder => "pass1234", autocomplete: "current-password", size: 30, class: "admins-session-form-title" %></td>
           </div>
       </tr>
     </table>
