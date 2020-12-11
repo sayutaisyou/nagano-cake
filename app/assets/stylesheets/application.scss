@@ -103,4 +103,17 @@ footer {
   margin-top: 10px;
 }
 
+.bg {
+  width: 100%;
+  background-image: url('/images/header-bg.jpg');
+  background-size: cover;
+}
+
+.bg-mask {
+  // height: 100%;
+  // width: 100%;
+  background: rgba(255,255,255,0.5);
+}
+
+
 
