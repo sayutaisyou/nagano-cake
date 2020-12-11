@@ -48,14 +48,14 @@
                     <tr>
                         <div class="">
                             <th><%= f.label :商品名, class: "" %></th>
-                            <td><%= f.text_field :name %></td>
+                            <td><%= f.text_field :name, :placeholder => "ショートケーキ" %></td>
                         </div>
                     </tr>
 
                     <tr>
                         <div class="">
                             <th><%= f.label :商品説明, class: "" %></th>
-                            <td><%= f.text_area :introduction %></td>
+                            <td><%= f.text_area :introduction, :placeholder => "洋菓子のケーキ" %></td>
                         </div>
                     </tr>
 
@@ -69,7 +69,7 @@
                     <tr>
                         <div class="">
                             <th><%= f.label :税抜き価格, class: "" %></th>
-                            <td><%= f.text_field :price %>円</td>
+                            <td><%= f.text_field :price, :placeholder => "（半角で入力）500" %>円</td>
                         </div>
                     </tr>
 
