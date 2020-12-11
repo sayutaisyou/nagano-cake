@@ -14,7 +14,7 @@
 
     <!--model(Bootstrap)-->
     <!--< % if :devise_controller? %>-->
-    <% unless customer_signed_in? %>
+    <% unless (params[:order_sort] == "1") || customer_signed_in? %>
       <div class="modal in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-left: 0px;">
         <div class="modal-dialog center-modal" role="document">
           <div class="modal-content">

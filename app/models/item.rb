@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   
   enum is_active: { "販売中": true, "売切れ": false}
 
-  attachment :image, destroy: false
+  attachment :image
 
 	validates :image, presence: true
   validates :name, presence: true
