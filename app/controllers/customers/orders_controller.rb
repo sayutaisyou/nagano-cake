@@ -11,7 +11,7 @@ class Customers::OrdersController < ApplicationController
     @order = Order.new
     @addresses = current_customer.addresses
   end
-  
+
   def confirm
     # Orderの受け皿を作る
     @order = Order.new(order_params)
@@ -96,20 +96,20 @@ class Customers::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_details = OrderDetail.where(order_id: @order.id)
   end
-  
+
   protected
   def order_params
     params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment)
   end
-  
+
   def order_detail_params
     params.require(:order_detail).permit(:order_id, :item_id, :price, :amount)
   end
-  
+
   def customer_params
     params.require(:customer).permit(:last_name, :first_name)
   end
-  
+
   def address_params
     params.require(:address).permit(:postal_code, :address, :name)
   end
