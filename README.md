@@ -17,6 +17,7 @@ etc...
 $ git clone https://github.com/sayutaisyou/nagano-cake.git  
 $ cd nagano-cake  
 $ bundle install  
+$ rails db:migrate
 $ rails db:seed  
 $ rails s  
 
