@@ -1,6 +1,8 @@
 # Nagano-cake  
 
-
+## ロゴ  
+<img width="300" alt="ロゴ" src="https://github.com/sayutaisyou/nagano-cake/blob/master/app/assets/images/logo.jpg">  
+ 
 ## 説明
 ※DMM WebCampの課題です。  
 長野県にある…のかもしれない、小さな洋菓子店「ながのCAKE」の商品を通販するためのECサイト。  
