@@ -10,3 +10,20 @@
   email: "test@test",
   password: "testtest"
   )
+
+  Genre.create!(
+  [
+    {
+      name: 'ケーキ',
+    },
+    {
+      name: '焼き菓子',
+    },
+    {
+      name: 'プリン',
+    },
+    {
+      name: 'キャンディ',
+    }
+  ]
+)
