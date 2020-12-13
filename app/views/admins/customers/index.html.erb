@@ -33,8 +33,14 @@
             <% end %>
           </td>
         </tr>
-        <%= paginate @customers %>
       <% end %>
     </tbody>
   </table>
+
+  <div class="row">
+    <div class="col-lg-2 offset-lg-5 ">
+      <p><%= paginate @customers%></p>
+    </div>
+  </div>
+
 </div>
